@@ -24,7 +24,8 @@
     "42c93dea-20f2-499a-8bae-9d924378554a",
     "47e17a71-f66f-436e-bfbe-e2894109df88",
     "34e84bd7-7250-452d-bc76-fb263018e145",
-    "c69ecdbb-b502-4655-b200-55a7be5af659"
+    "c69ecdbb-b502-4655-b200-55a7be5af659",
+    "e678efbe-08b9-43f4-8b27-8693628eeb3e"
   ],
   "primaryOutputs": [
     {
@@ -41,6 +42,9 @@
     },
     {
       "path": "..\\src\\Cqrs.Template.Infra.CrossCutting.IoC\\Cqrs.Template.Infra.CrossCutting.IoC.csproj"
+    },
+    {
+      "path": "..\\src\\Cqrs.Template.Infra.CrossCutting.Environments\\Cqrs.Template.Infra.CrossCutting.Environments.csproj"
     }
   ],
   "symbols": {

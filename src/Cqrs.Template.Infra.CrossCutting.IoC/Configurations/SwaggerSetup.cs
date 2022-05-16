@@ -52,6 +52,30 @@ public static class SwaggerSetup
 				}
 			});
 
+            s.AddSecurityDefinition("Basic", new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                In = ParameterLocation.Header,
+                Scheme = "basic",
+                Description = "Username and password for basic authentication"
+            });
+
+            s.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Basic"
+                        }
+                    },
+                    new List<string>()
+                }
+            });
+
 			s.OperationFilter<RemoveVersionParameterFilter>();
 			s.DocumentFilter<ReplaceVersionWithExactValueInPathFilter>();
 			s.EnableAnnotations();
@@ -74,7 +98,7 @@ public static class SwaggerSetup
 			}
 		});
 	}
-		
+
 	public class RemoveVersionParameterFilter : IOperationFilter
 	{
 		public void Apply(OpenApiOperation operation, OperationFilterContext context)
@@ -89,9 +113,9 @@ public static class SwaggerSetup
 		{
 			var paths = new OpenApiPaths();
 
-			foreach (var path in swaggerDoc.Paths)
+			foreach (var (key, value) in swaggerDoc.Paths)
 			{
-				paths.Add(path.Key.Replace("{version}", swaggerDoc.Info.Version), path.Value);
+				paths.Add(key.Replace("{version}", swaggerDoc.Info.Version), value);
 			}
 
 			swaggerDoc.Paths = paths;
