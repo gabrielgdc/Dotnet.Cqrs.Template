@@ -1,6 +1,6 @@
 namespace Cqrs.Template.Domain.SeedWork;
 
-public interface IRepository<TEntity> where TEntity : IAggregateRoot
+public interface IRepository<in TEntity> where TEntity : IAggregateRoot
 {
 	void Add(TEntity obj);
 }

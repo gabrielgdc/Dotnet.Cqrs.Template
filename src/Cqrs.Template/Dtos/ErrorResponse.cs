@@ -1,31 +1,34 @@
 using System;
+using Microsoft.Extensions.Logging;
 
-namespace Cqrs.Template.Api.Filters.ErrorsModels;
+namespace Cqrs.Template.Dtos;
 
-public class DefaultError
+public class ErrorResponse
 {
     public bool Success { get; }
-    public ErrorsResponse[] Errors { get; }
+    public Error[] Errors { get; }
 
-    public DefaultError(bool success, ErrorsResponse[] errors)
+    public ErrorResponse(Error[] errors)
     {
-        Success = success;
+        Success = false;
         Errors = errors;
     }
 }
 
-public class ErrorsResponse
+public class Error
 {
     public string Code { get; }
     public string Message { get; }
+    public EventId EventId { get; }
     public string Instance { get; }
     public int Status { get; }
     public DateTime TimeStamp { get; }
 
-    public ErrorsResponse(string code, string message, string instance, int status)
+    public Error(string code, string message, EventId eventId, string instance, int status)
     {
         Code = code;
         Message = message;
+        EventId = eventId;
         Instance = instance;
         Status = status;
         TimeStamp = DateTime.UtcNow;

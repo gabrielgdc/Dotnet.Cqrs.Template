@@ -23,7 +23,7 @@ public class PipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest,
         _bus = bus;
     }
 
-    public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         if (!ValidateRequest(request))
         {
@@ -62,4 +62,6 @@ public class PipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest,
 
         return false;
     }
+
+
 }

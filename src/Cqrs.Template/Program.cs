@@ -1,10 +1,11 @@
+using System.Reflection;
+using System.Text.Json.Serialization;
 using MediatR;
-using Cqrs.Template.Api.Filters;
+using Cqrs.Template.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
-using Cqrs.Template.Application.CommandHandlers;
 using Cqrs.Template.Infra.CrossCutting.IoC.Configurations;
 using Cqrs.Template.Infra.CrossCutting.IoC.Configurations.Authentication;
 using Cqrs.Template.Infra.CrossCutting.IoC.Configurations.Logging;
@@ -22,10 +23,11 @@ builder.Services.AddVersionedApiExplorer();
 builder.Services.AddSwaggerSetup();
 builder.Services.AddAutoMapper();
 builder.Services.AddDependencyInjectionSetup(builder.Configuration);
-builder.Services.AddMediatR(typeof(CommandHandler));
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<GlobalExceptionFilterAttribute>();
 builder.Services.AddDatabaseSetup();
 builder.Services.AddControllers();
+
 builder.Services.AddHealthCheck(builder.Configuration);
 
 var app = builder.Build();

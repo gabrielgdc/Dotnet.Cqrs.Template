@@ -1,31 +1,28 @@
-﻿using System.Collections.Generic;
-using Cqrs.Template.Api.Dtos;
-using Cqrs.Template.Api.Filters;
-using Cqrs.Template.Domain.Exceptions;
+﻿using Cqrs.Template.Domain.Exceptions;
+using Cqrs.Template.Dtos;
+using Cqrs.Template.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cqrs.Template.Api.Controllers;
+namespace Cqrs.Template.Controllers;
 
 [Route("your-project-name/[controller]/v{version:apiVersion}")]
 [ServiceFilter(typeof(GlobalExceptionFilterAttribute))]
-public class BaseController : Controller
+public abstract class BaseController : Controller
 {
     private readonly ExceptionNotificationHandler _notifications;
-
-    protected IEnumerable<ExceptionNotification> Notifications => _notifications.GetNotifications();
 
     protected BaseController(INotificationHandler<ExceptionNotification> notifications)
     {
         _notifications = (ExceptionNotificationHandler)notifications;
     }
 
-    protected bool IsValidOperation()
+    private bool IsValidOperation()
     {
         return !_notifications.HasNotifications();
     }
 
-    protected new IActionResult Response(IActionResult action)
+    protected IActionResult CreateResponse(IActionResult action)
     {
         if (!IsValidOperation())
         {

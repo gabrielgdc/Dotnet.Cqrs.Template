@@ -51,10 +51,7 @@ public class Entity
 
     public static bool operator ==(Entity left, Entity right)
     {
-        if (Equals(left, null))
-            return Equals(right, null) ? true : false;
-
-        return left.Equals(right);
+        return left?.Equals(right) ?? Equals(right, null);
     }
 
     public static bool operator !=(Entity left, Entity right)

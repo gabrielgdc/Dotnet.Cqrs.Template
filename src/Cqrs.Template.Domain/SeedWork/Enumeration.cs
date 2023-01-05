@@ -8,8 +8,8 @@ namespace Cqrs.Template.Domain.SeedWork;
 
 public abstract class Enumeration
 {
-    public string Name { get; }
     public int Id { get; }
+    public string Name { get; }
 
     protected Enumeration(int id, string name)
     {
@@ -17,7 +17,10 @@ public abstract class Enumeration
         Name = name;
     }
 
-    public override string ToString() => Name;
+    public override string ToString()
+    {
+        return Name;
+    }
 
     public static IEnumerable<T> GetAll<T>() where T : Enumeration
     {
@@ -29,21 +32,21 @@ public abstract class Enumeration
 
     public static T FromValue<T>(int value) where T : Enumeration
     {
-        return Parse<T, int>(value, "value", item => item.Id == value);
+        return Parse<T>(item => item.Id == value);
     }
 
-    private static T Parse<T, TK>(TK value, string description, Func<T, bool> predicate) where T : Enumeration
+    private static T Parse<T>(Func<T, bool> predicate) where T : Enumeration
     {
         return GetAll<T>().FirstOrDefault(predicate);
     }
 
     public static T FromName<T>(string name) where T : Enumeration
     {
-        var state = GetAll<T>().SingleOrDefault(s => String.Equals(s.Name, name, StringComparison.CurrentCultureIgnoreCase));
+        var state = GetAll<T>().SingleOrDefault(s => string.Equals(s.Name, name, StringComparison.CurrentCultureIgnoreCase));
 
         if (state == null)
         {
-            throw new DomainException($"Possible values for {typeof(T)}: {String.Join(",", GetAll<T>().Select(s => s.Name))}");
+            throw new DomainException($"Possible values for {typeof(T)}: {string.Join(",", GetAll<T>().Select(s => s.Name))}");
         }
 
         return state;
@@ -55,7 +58,7 @@ public abstract class Enumeration
 
         if (state == null)
         {
-            throw new DomainException($"Possible values for {typeof(T)}: {String.Join(",", GetAll<T>().Select(s => s.Name))}");
+            throw new DomainException($"Possible values for {typeof(T)}: {string.Join(",", GetAll<T>().Select(s => s.Name))}");
         }
 
         return state;

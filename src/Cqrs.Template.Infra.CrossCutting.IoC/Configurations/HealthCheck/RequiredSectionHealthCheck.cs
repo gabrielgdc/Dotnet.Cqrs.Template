@@ -20,21 +20,32 @@ internal class RequiredSectionsHealthCheck<T> : IHealthCheck
     {
         var section = _configuration.GetSection(context.Registration.Name).Get<T>();
 
-        if (section is null) return Task.FromResult(HealthCheckResult.Unhealthy($"Section {context.Registration.Name} not mapped"));
+        if (section is null)
+            return Task.FromResult(HealthCheckResult.Unhealthy($"Section {context.Registration.Name} not mapped"));
 
         var properties = section.GetType().GetProperties();
 
-        var missingProperties = properties.Where(x => x.GetValue(section) is null).ToList();
+        var missingProperties = properties
+            .Where(x => x.GetValue(section) is null)
+            .Select(x => x.Name)
+            .ToList();
+
+        var mappedProperties = properties
+            .Where(x => x.GetValue(section) is not null)
+            .Select(x => x.Name)
+            .ToList();
 
         IReadOnlyDictionary<string, object> data = new Dictionary<string, object>
         {
-            { "MissingProperties", string.Join(", ", missingProperties) }
+            { "MissingProperties", string.Join(" | ", missingProperties) },
+            { "MappedProperties", string.Join(" | ", mappedProperties) },
         };
 
         return Task.FromResult(
             !missingProperties.Any()
-                ? HealthCheckResult.Healthy($"Section {context.Registration.Name} mapped")
-                : HealthCheckResult.Unhealthy($"Section {context.Registration.Name} not properly mapped, missing fields", data: data)
+                ? HealthCheckResult.Healthy($"Section {context.Registration.Name} mapped", data: data)
+                : HealthCheckResult.Unhealthy(
+                    $"Section {context.Registration.Name} not properly mapped, missing properties", data: data)
         );
     }
 }
