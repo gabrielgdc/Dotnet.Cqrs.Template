@@ -1,8 +1,9 @@
 using FluentValidation.Results;
+using MediatR;
 
 namespace Cqrs.Template.Application.Commands;
 
-public abstract class Command
+public abstract class Command<T> : IRequest<T>
 {
 	protected ValidationResult ValidationResult { get; set; }
 

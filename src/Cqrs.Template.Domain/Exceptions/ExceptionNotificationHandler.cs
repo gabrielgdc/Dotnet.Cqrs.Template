@@ -8,21 +8,21 @@ namespace Cqrs.Template.Domain.Exceptions;
 
 public class ExceptionNotificationHandler : INotificationHandler<ExceptionNotification>
 {
-	private List<ExceptionNotification> _notifications;
-		
+	private ICollection<ExceptionNotification> _notifications;
+
 	public ExceptionNotificationHandler()
 	{
 		_notifications = new List<ExceptionNotification>();
 	}
-		
+
 	public Task Handle(ExceptionNotification message, CancellationToken cancellationToken)
 	{
 		_notifications.Add(message);
-			
+
 		return Task.CompletedTask;
 	}
 
-	public virtual List<ExceptionNotification> GetNotifications()
+	public virtual ICollection<ExceptionNotification> GetNotifications()
 	{
 		return _notifications;
 	}

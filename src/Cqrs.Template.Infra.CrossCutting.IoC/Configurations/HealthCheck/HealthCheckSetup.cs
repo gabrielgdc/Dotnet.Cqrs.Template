@@ -1,11 +1,11 @@
-﻿using Cqrs.Template.Domain.Exceptions;
-using HealthChecks.UI.Client;
+﻿using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Cqrs.Template.Infra.CrossCutting.Environments.Configurations;
 
 namespace Cqrs.Template.Infra.CrossCutting.IoC.Configurations.HealthCheck;
 
@@ -15,11 +15,13 @@ public static class HealthCheckSetup
     {
         var hcBuilder = services.AddHealthChecks();
 
-        hcBuilder.AddCheck("Self Check API", () => HealthCheckResult.Healthy("HealthCheck Working"));
+        hcBuilder.AddCheck("Self Check API", () => HealthCheckResult.Healthy("HealthCheck Working For Cqrs.Template"));
         // ADD OTHER CHECKS HERE
+
+        hcBuilder.AddCheck<RequiredSectionsHealthCheck<ApplicationConfiguration>>(nameof(ApplicationConfiguration));
     }
 
-    public static void UseHealthCheck(this IEndpointRouteBuilder endpoints)
+    public static void MapHealthCheck(this IEndpointRouteBuilder endpoints)
     {
         endpoints.MapHealthChecks("/hc", new HealthCheckOptions
         {

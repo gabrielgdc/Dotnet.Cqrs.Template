@@ -11,9 +11,10 @@ internal class RequiredVariablesHealthCheck : IHealthCheck
     {
         var variable = Environment.GetEnvironmentVariable(context.Registration.Name);
 
-        if (!string.IsNullOrWhiteSpace(variable))
-            return Task.FromResult(HealthCheckResult.Healthy("Mapped variable"));
-
-        return Task.FromResult(HealthCheckResult.Unhealthy($"Variable not mapped: {context.Registration.Name}"));
+        return Task.FromResult(
+            !string.IsNullOrWhiteSpace(variable)
+                ? HealthCheckResult.Healthy("Mapped variable")
+                : HealthCheckResult.Unhealthy($"Variable not mapped: {context.Registration.Name}")
+        );
     }
 }

@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Cqrs.Template.Api.Dtos;
 using Cqrs.Template.Domain.Exceptions;
+using Cqrs.Template.Dtos;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cqrs.Template.Api.Controllers.V1;
+namespace Cqrs.Template.Controllers.V1;
 
 [ApiVersion("1")]
 [ApiController]
@@ -16,10 +18,11 @@ public class InitialController : BaseController
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<string>), 200)]
+    [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
     public Task<IActionResult> Sample()
     {
+        throw new Exception("dsaads");
         var ipsum = new List<string> { "Nothing", "Here", "Just", "Hello" };
-        return Task.FromResult(Response(Ok(new Response<object>(ipsum))));
+        return Task.FromResult(CreateResponse(Ok(new Response<object>(ipsum))));
     }
 }

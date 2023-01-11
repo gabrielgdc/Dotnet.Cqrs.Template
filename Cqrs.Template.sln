@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cqrs.Template.Api", "src\Cqrs.Template.Api\Cqrs.Template.Api.csproj", "{2FA777D6-8B26-4380-9ABF-837C1C2A59E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cqrs.Template", "src\Cqrs.Template\Cqrs.Template.csproj", "{2FA777D6-8B26-4380-9ABF-837C1C2A59E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Presentation", "01 - Presentation", "{9DBA9B17-4908-41F9-84F4-F92B8A7B9687}"
 EndProject
@@ -21,6 +21,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.1 - Data", "04.1 - Data", "{8B76B6ED-B104-440D-A530-CA16664604FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cqrs.Template.Infra.Data", "src\Cqrs.Template.Infra.Data\Cqrs.Template.Infra.Data.csproj", "{FEE1EE91-190A-4E79-894D-0D73EC54D424}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cqrs.Template.Infra.CrossCutting.Environments", "src\Cqrs.Template.Infra.CrossCutting.Environments\Cqrs.Template.Infra.CrossCutting.Environments.csproj", "{BA5501A3-07A6-4281-A217-298083EC34D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,10 @@ Global
 		{FEE1EE91-190A-4E79-894D-0D73EC54D424}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEE1EE91-190A-4E79-894D-0D73EC54D424}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEE1EE91-190A-4E79-894D-0D73EC54D424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA5501A3-07A6-4281-A217-298083EC34D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA5501A3-07A6-4281-A217-298083EC34D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA5501A3-07A6-4281-A217-298083EC34D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA5501A3-07A6-4281-A217-298083EC34D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2FA777D6-8B26-4380-9ABF-837C1C2A59E0} = {9DBA9B17-4908-41F9-84F4-F92B8A7B9687}
@@ -57,5 +63,6 @@ Global
 		{F0CCF860-E30D-4369-B85E-31B73152379A} = {F6CF824B-E87A-4267-B18F-BE9DF4591821}
 		{8B76B6ED-B104-440D-A530-CA16664604FD} = {B1DCD034-4E6C-4E92-A38D-150B18B65BD3}
 		{FEE1EE91-190A-4E79-894D-0D73EC54D424} = {8B76B6ED-B104-440D-A530-CA16664604FD}
+		{BA5501A3-07A6-4281-A217-298083EC34D2} = {F6CF824B-E87A-4267-B18F-BE9DF4591821}
 	EndGlobalSection
 EndGlobal

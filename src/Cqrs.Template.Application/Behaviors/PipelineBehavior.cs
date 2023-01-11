@@ -13,7 +13,7 @@ namespace Cqrs.Template.Application.Behaviors;
 public class PipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {
     private readonly IMemoryCache _cache;
-    private readonly IEnumerable<IValidator> _validators;
+    private readonly IEnumerable<IValidator<TRequest>> _validators;
     private readonly IMediator _bus;
 
     public PipelineBehavior(IMemoryCache cache, IEnumerable<IValidator<TRequest>> validators, IMediator bus)
@@ -23,7 +23,7 @@ public class PipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest,
         _bus = bus;
     }
 
-    public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         if (!ValidateRequest(request))
         {
@@ -48,21 +48,20 @@ public class PipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest,
     private bool ValidateRequest(TRequest request)
     {
         var failures = _validators
-            .Select(v => v.Validate(request as IValidationContext))
+            .Select(v => v.Validate(request))
             .SelectMany(result => result.Errors)
             .Where(f => f != null)
             .ToList();
 
-        if (failures.Any())
-        {
-            foreach(var error in failures)
-            {
-                _bus.Publish(new ExceptionNotification(error.ErrorCode, error.ErrorMessage, error.PropertyName));
-            }
+        if (!failures.Any()) return true;
 
-            return false;
+        foreach (var error in failures)
+        {
+            _bus.Publish(new ExceptionNotification(error.ErrorCode, error.ErrorMessage, error.PropertyName));
         }
 
-        return true;
+        return false;
     }
+
+
 }

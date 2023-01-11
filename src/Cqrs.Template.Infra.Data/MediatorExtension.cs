@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Cqrs.Template.Infra.Data;
 
-static class MediatorExtension
+public static class MediatorExtension
 {
 	public static async Task DispatchDomainEventsAsync(this IMediator mediator, ApplicationDbContext ctx)
 	{
