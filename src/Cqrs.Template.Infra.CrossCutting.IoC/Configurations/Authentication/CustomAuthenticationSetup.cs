@@ -7,7 +7,7 @@ public static class CustomAuthenticationSetup
 {
     public static void AddCustomAuthentication(this IServiceCollection services)
     {
-        if (services is null) throw new ArgumentNullException(nameof(services));
+        ArgumentNullException.ThrowIfNull(services);
 
         services.AddAuthentication()
             .AddScheme<BasicAuthenticationSchemeOptions, BasicAuthenticationScheme>(CustomAuthenticationSchemes.Basic, null);

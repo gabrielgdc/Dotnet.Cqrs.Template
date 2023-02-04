@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Cqrs.Template.Domain.Exceptions;
+using System.Threading.Tasks;
 using Cqrs.Template.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +20,6 @@ public class InitialController : BaseController
     [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
     public Task<IActionResult> Sample()
     {
-        throw new Exception("dsaads");
         var ipsum = new List<string> { "Nothing", "Here", "Just", "Hello" };
         return Task.FromResult(CreateResponse(Ok(new Response<object>(ipsum))));
     }

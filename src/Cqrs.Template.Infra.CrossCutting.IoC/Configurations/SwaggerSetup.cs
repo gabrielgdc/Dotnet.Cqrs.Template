@@ -14,7 +14,7 @@ public static class SwaggerSetup
 {
     public static void AddSwaggerSetup(this IServiceCollection services)
     {
-        if (services == null) throw new ArgumentNullException(nameof(services));
+        ArgumentNullException.ThrowIfNull(services);
 
         services.AddSwaggerGen(s =>
         {
@@ -22,19 +22,25 @@ public static class SwaggerSetup
             {
                 Title = string.Join("", "Cqrs.Template".Split(".")),
                 Description = "Some description",
-                Contact = new OpenApiContact {Name = "YourName", Email = "youremail@email.com"}
-                //you can add a contact URI with you want
-                // Contact = new OpenApiContact { Name = "ContactName", Email = "email@gmail.com", Url = new Uri("https://yoursite.com") }
+                Contact = new OpenApiContact { Name = "YourName", Email = "youremail@email.com" }
             });
 
-            // here it's adding a new authorization header to swagger ui, the default is JWT Bearer Token, but you can use anyone
             s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
                 Name = "Authorization",
                 Type = SecuritySchemeType.Http,
                 In = ParameterLocation.Header,
                 Scheme = "bearer",
-                Description = "Jwt Token For authentication"
+                Description = "Jwt token for authentication"
+            });
+
+            s.AddSecurityDefinition("Basic", new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                In = ParameterLocation.Header,
+                Scheme = "basic",
+                Description = "Username and password for basic authentication"
             });
 
             s.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -49,20 +55,7 @@ public static class SwaggerSetup
                         }
                     },
                     new List<string>()
-                }
-            });
-
-            s.AddSecurityDefinition("Basic", new OpenApiSecurityScheme
-            {
-                Name = "Authorization",
-                Type = SecuritySchemeType.Http,
-                In = ParameterLocation.Header,
-                Scheme = "basic",
-                Description = "Username and password for basic authentication"
-            });
-
-            s.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
+                },
                 {
                     new OpenApiSecurityScheme
                     {
@@ -86,12 +79,14 @@ public static class SwaggerSetup
 
     public static void UseSwaggerSetup(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
     {
-        if (app == null) throw new ArgumentNullException(nameof(app));
+        ArgumentNullException.ThrowIfNull(app);
+        ArgumentNullException.ThrowIfNull(provider);
 
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {
-            foreach (var description in provider.ApiVersionDescriptions)
+            c.DocumentTitle = string.Join(" ", "Cqrs.Template".Split(".")) + " Swagger UI";
+            foreach ( var description in provider.ApiVersionDescriptions )
             {
                 c.SwaggerEndpoint($"{description.GroupName}/swagger.json",
                     description.GroupName.ToUpperInvariant());
@@ -114,7 +109,7 @@ public static class SwaggerSetup
         {
             var paths = new OpenApiPaths();
 
-            foreach (var (key, value) in swaggerDoc.Paths)
+            foreach ( var (key, value) in swaggerDoc.Paths )
             {
                 paths.Add(key.Replace("{version}", swaggerDoc.Info.Version), value);
             }
@@ -132,13 +127,13 @@ public static class SwaggerSetup
 
         public void Configure(SwaggerGenOptions options)
         {
-            foreach (var description in _provider.ApiVersionDescriptions)
+            foreach ( var description in _provider.ApiVersionDescriptions )
             {
                 options.SwaggerDoc(
                     description.GroupName,
                     new OpenApiInfo
                     {
-                        Title = string.Join(" ", "Cqrs.Template".Split(".")),
+                        Title = string.Join("", "Cqrs.Template".Split(".")),
                         Version = description.ApiVersion.ToString()
                     });
             }

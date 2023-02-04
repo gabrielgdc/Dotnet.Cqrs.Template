@@ -8,7 +8,7 @@ public static class DependencyInjectionSetup
 {
 	public static void AddDependencyInjectionSetup(this IServiceCollection services, IConfiguration configuration)
 	{
-		if (services == null) throw new ArgumentNullException(nameof(services));
+        ArgumentNullException.ThrowIfNull(services);
 
 		NativeInjectorBootstrapper.RegisterServices(services, configuration);
 	}

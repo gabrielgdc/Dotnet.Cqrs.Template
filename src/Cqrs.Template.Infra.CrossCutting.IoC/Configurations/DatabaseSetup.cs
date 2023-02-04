@@ -8,7 +8,7 @@ public static class DatabaseSetup
 {
 	public static void AddDatabaseSetup(this IServiceCollection services)
 	{
-		if (services == null) throw new ArgumentNullException(nameof(services));
+        ArgumentNullException.ThrowIfNull(services);
 
 		services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Scoped);
 	}

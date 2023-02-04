@@ -14,7 +14,7 @@ public static class NativeInjectorBootstrapper
     public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
     {
         RegisterData(services);
-        RegisterMediatR(services);
+        RegisterMediator(services);
         RegisterEnvironments(services, configuration);
     }
 
@@ -25,7 +25,7 @@ public static class NativeInjectorBootstrapper
         // sample: services.AddScoped<IUserRepository, UserRepository>();
     }
 
-    private static void RegisterMediatR(IServiceCollection services)
+    private static void RegisterMediator(IServiceCollection services)
     {
         const string applicationAssemblyName = "Cqrs.Template.Application"; // use your project name
         var assembly = AppDomain.CurrentDomain.Load(applicationAssemblyName);
@@ -34,7 +34,6 @@ public static class NativeInjectorBootstrapper
             .FindValidatorsInAssembly(assembly)
             .ForEach(result => services.AddScoped(result.InterfaceType, result.ValidatorType));
 
-        // injection for Mediator
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(PipelineBehavior<,>));
         services.AddScoped<INotificationHandler<ExceptionNotification>, ExceptionNotificationHandler>();
     }

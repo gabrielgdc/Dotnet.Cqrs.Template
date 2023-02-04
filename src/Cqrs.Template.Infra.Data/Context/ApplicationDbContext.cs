@@ -24,13 +24,14 @@ public class ApplicationDbContext : DbContext
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IMediator mediator, ApplicationConfiguration applicationConfiguration) : base(options)
     {
-        _bus = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        ArgumentNullException.ThrowIfNull(mediator);
+        _bus = mediator;
         _applicationConfiguration = applicationConfiguration;
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        // options.UseNpgsql(_applicationConfiguration.ConnectionString);
+        options.UseNpgsql(_applicationConfiguration.ConnectionString);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
