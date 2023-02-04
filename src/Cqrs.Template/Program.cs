@@ -1,5 +1,5 @@
 using System.Reflection;
-using System.Text.Json.Serialization;
+using Cqrs.Template.Application.CommandHandlers;
 using MediatR;
 using Cqrs.Template.Filters;
 using Microsoft.AspNetCore.Builder;
@@ -23,7 +23,7 @@ builder.Services.AddVersionedApiExplorer();
 builder.Services.AddSwaggerSetup();
 builder.Services.AddAutoMapper();
 builder.Services.AddDependencyInjectionSetup(builder.Configuration);
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddMediatR(typeof(CommandHandler<,>));
 builder.Services.AddScoped<GlobalExceptionFilterAttribute>();
 builder.Services.AddDatabaseSetup();
 builder.Services.AddControllers();
