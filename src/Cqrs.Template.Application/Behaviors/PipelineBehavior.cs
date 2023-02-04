@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Cqrs.Template.Domain.Enums;
 using Cqrs.Template.Domain.Exceptions;
 using FluentValidation;
 using MediatR;
@@ -57,7 +58,7 @@ public class PipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest,
 
         foreach (var error in failures)
         {
-            _bus.Publish(new ExceptionNotification(error.ErrorCode, error.ErrorMessage, error.PropertyName));
+            _bus.Publish(new ExceptionNotification(error.ErrorCode, error.ErrorMessage, ExceptionType.Client, error.PropertyName));
         }
 
         return false;

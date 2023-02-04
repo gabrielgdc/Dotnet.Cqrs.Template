@@ -1,5 +1,6 @@
 using System;
 using Cqrs.Template.Dtos;
+using Cqrs.Template.Factories;
 using Cqrs.Template.Infra.CrossCutting.Environments.Configurations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,19 +29,15 @@ public class GlobalExceptionFilterAttribute : Attribute, IExceptionFilter
 
         _logger.LogError(eventId, context.Exception, context.Exception.Message);
 
-        var errorResponse = new ErrorResponse(
-            new[]
-            {
-                new Error(
-                    _applicationConfiguration.GlobalErrorCode,
-                    _applicationConfiguration.GlobalErrorMessage,
-                    eventId,
-                    context.HttpContext.Request.Path,
-                    StatusCodes.Status500InternalServerError
-                )
-            }
+        var problemDetails = CustomProblemDetailsFactory.CreateProblemDetailsFromContext(
+            context.HttpContext,
+            _applicationConfiguration.GlobalErrorMessage,
+            _applicationConfiguration.GlobalErrorCode
         );
-        context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
-        context.Result = new ObjectResult(errorResponse);
+
+        context.Result = new ObjectResult(problemDetails)
+        {
+            StatusCode = StatusCodes.Status500InternalServerError
+        };
     }
 }

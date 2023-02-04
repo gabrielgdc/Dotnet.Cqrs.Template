@@ -1,34 +1,45 @@
 ﻿using Cqrs.Template.Domain.Exceptions;
-using Cqrs.Template.Dtos;
+using Cqrs.Template.Factories;
 using Cqrs.Template.Filters;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cqrs.Template.Controllers;
 
 [Route("your-project-name/[controller]/v{version:apiVersion}")]
 [ServiceFilter(typeof(GlobalExceptionFilterAttribute))]
+[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
 public abstract class BaseController : Controller
 {
-    private readonly ExceptionNotificationHandler _notifications;
+    private readonly ExceptionNotificationHandler _exceptionNotificationHandler;
 
     protected BaseController(INotificationHandler<ExceptionNotification> notifications)
     {
-        _notifications = (ExceptionNotificationHandler)notifications;
+        _exceptionNotificationHandler = (ExceptionNotificationHandler)notifications;
     }
 
-    private bool IsValidOperation()
+    private ProblemDetails GetProblem()
     {
-        return !_notifications.HasNotifications();
+        if (!_exceptionNotificationHandler.HasNotifications()) return default;
+
+        return CustomProblemDetailsFactory.CreateProblemDetailsFromContext(
+            HttpContext,
+            _exceptionNotificationHandler
+        );
     }
 
     protected IActionResult CreateResponse(IActionResult action)
     {
-        if (!IsValidOperation())
+        var problem = GetProblem();
+
+        if (problem is not null)
         {
-            return BadRequest(new Response<object>(
-                _notifications.GetNotifications())
-            );
+            return new ObjectResult(problem)
+            {
+                StatusCode = problem.Status
+            };
         }
 
         return action;

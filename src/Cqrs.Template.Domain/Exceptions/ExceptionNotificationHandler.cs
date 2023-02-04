@@ -2,38 +2,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Cqrs.Template.Domain.Enums;
 using MediatR;
 
 namespace Cqrs.Template.Domain.Exceptions;
 
 public class ExceptionNotificationHandler : INotificationHandler<ExceptionNotification>
 {
-	private ICollection<ExceptionNotification> _notifications;
+    private ICollection<ExceptionNotification> _notifications;
 
-	public ExceptionNotificationHandler()
-	{
-		_notifications = new List<ExceptionNotification>();
-	}
+    public ExceptionNotificationHandler()
+    {
+        _notifications = new List<ExceptionNotification>();
+    }
 
-	public Task Handle(ExceptionNotification message, CancellationToken cancellationToken)
-	{
-		_notifications.Add(message);
+    public Task Handle(ExceptionNotification message, CancellationToken cancellationToken)
+    {
+        _notifications.Add(message);
 
-		return Task.CompletedTask;
-	}
+        return Task.CompletedTask;
+    }
 
-	public virtual ICollection<ExceptionNotification> GetNotifications()
-	{
-		return _notifications;
-	}
+    public virtual ICollection<ExceptionNotification> GetNotifications()
+    {
+        return _notifications;
+    }
 
-	public virtual bool HasNotifications()
-	{
-		return GetNotifications().Any();
-	}
+    public ExceptionType GetExceptionType()
+    {
+        var notification = _notifications.FirstOrDefault();
 
-	public void Dispose()
-	{
-		_notifications = new List<ExceptionNotification>();
-	}
+        return notification?.Type ?? default;
+    }
+
+    public virtual bool HasNotifications()
+    {
+        return GetNotifications().Any();
+    }
+
+    public void Dispose()
+    {
+        _notifications = new List<ExceptionNotification>();
+    }
 }

@@ -86,7 +86,7 @@ public static class SwaggerSetup
         app.UseSwaggerUI(c =>
         {
             c.DocumentTitle = string.Join(" ", "Cqrs.Template".Split(".")) + " Swagger UI";
-            foreach ( var description in provider.ApiVersionDescriptions )
+            foreach (var description in provider.ApiVersionDescriptions)
             {
                 c.SwaggerEndpoint($"{description.GroupName}/swagger.json",
                     description.GroupName.ToUpperInvariant());
@@ -109,7 +109,7 @@ public static class SwaggerSetup
         {
             var paths = new OpenApiPaths();
 
-            foreach ( var (key, value) in swaggerDoc.Paths )
+            foreach (var (key, value) in swaggerDoc.Paths)
             {
                 paths.Add(key.Replace("{version}", swaggerDoc.Info.Version), value);
             }
@@ -127,7 +127,7 @@ public static class SwaggerSetup
 
         public void Configure(SwaggerGenOptions options)
         {
-            foreach ( var description in _provider.ApiVersionDescriptions )
+            foreach (var description in _provider.ApiVersionDescriptions)
             {
                 options.SwaggerDoc(
                     description.GroupName,
