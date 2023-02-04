@@ -31,7 +31,7 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseNpgsql(_applicationConfiguration.ConnectionString);
+        options.UseSqlite(_applicationConfiguration.ConnectionString);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
