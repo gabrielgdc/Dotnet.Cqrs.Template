@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cqrs.Template.Infra.Data.Repositories;
 
-public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IAggregateRoot
+public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IAggregateRoot
 {
     protected readonly ApplicationDbContext ApplicationDbContext;
     protected readonly DbSet<TEntity> DbSet;
 
-    public Repository(ApplicationDbContext applicationDbContext)
+    protected Repository(ApplicationDbContext applicationDbContext)
     {
         ApplicationDbContext = applicationDbContext;
         DbSet = applicationDbContext.Set<TEntity>();
