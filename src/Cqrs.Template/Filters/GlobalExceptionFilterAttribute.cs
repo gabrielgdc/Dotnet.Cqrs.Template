@@ -1,11 +1,11 @@
 using System;
-using Cqrs.Template.Dtos;
 using Cqrs.Template.Factories;
 using Cqrs.Template.Infra.CrossCutting.Environments.Configurations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Cqrs.Template.Filters;
 
@@ -15,11 +15,11 @@ public class GlobalExceptionFilterAttribute : Attribute, IExceptionFilter
     private readonly ILogger<GlobalExceptionFilterAttribute> _logger;
 
     public GlobalExceptionFilterAttribute(
-        ApplicationConfiguration applicationConfiguration,
+        IOptions<ApplicationConfiguration> applicationConfiguration,
         ILogger<GlobalExceptionFilterAttribute> logger
     )
     {
-        _applicationConfiguration = applicationConfiguration;
+        _applicationConfiguration = applicationConfiguration.Value;
         _logger = logger;
     }
 

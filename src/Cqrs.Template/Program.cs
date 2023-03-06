@@ -1,5 +1,5 @@
-using System.Reflection;
 using Cqrs.Template.Application.CommandHandlers;
+using Cqrs.Template.Application.Validations;
 using MediatR;
 using Cqrs.Template.Filters;
 using Microsoft.AspNetCore.Builder;
@@ -10,12 +10,14 @@ using Cqrs.Template.Infra.CrossCutting.IoC.Configurations;
 using Cqrs.Template.Infra.CrossCutting.IoC.Configurations.Authentication;
 using Cqrs.Template.Infra.CrossCutting.IoC.Configurations.Logging;
 using Cqrs.Template.Infra.CrossCutting.IoC.Configurations.HealthCheck;
+using FluentValidation;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog();
 
+builder.Services.AddValidatorsFromAssemblyContaining(typeof(Validator<>), ServiceLifetime.Singleton);
 builder.Services.AddCustomLogging(builder.Configuration);
 builder.Services.AddCustomAuthentication();
 builder.Services.AddApiVersioning();

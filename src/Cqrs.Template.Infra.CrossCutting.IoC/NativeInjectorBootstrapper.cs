@@ -1,8 +1,7 @@
-﻿using System;
-using Cqrs.Template.Application.Behaviors;
+﻿using Cqrs.Template.Application.Behaviors;
 using Cqrs.Template.Domain.Exceptions;
 using Cqrs.Template.Infra.CrossCutting.Environments.Configurations;
-using FluentValidation;
+using Cqrs.Template.Infra.CrossCutting.IoC.Configurations;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,19 +26,12 @@ public static class NativeInjectorBootstrapper
 
     private static void RegisterMediator(IServiceCollection services)
     {
-        const string applicationAssemblyName = "Cqrs.Template.Application"; // use your project name
-        var assembly = AppDomain.CurrentDomain.Load(applicationAssemblyName);
-
-        AssemblyScanner
-            .FindValidatorsInAssembly(assembly)
-            .ForEach(result => services.AddScoped(result.InterfaceType, result.ValidatorType));
-
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(PipelineBehavior<,>));
         services.AddScoped<INotificationHandler<ExceptionNotification>, ExceptionNotificationHandler>();
     }
 
     private static void RegisterEnvironments(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton(configuration.GetSection(nameof(ApplicationConfiguration)).Get<ApplicationConfiguration>());
+        services.AddEnvironmentVariableSection<ApplicationConfiguration>(configuration, nameof(ApplicationConfiguration));
     }
 }

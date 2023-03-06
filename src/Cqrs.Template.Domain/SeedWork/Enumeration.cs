@@ -30,11 +30,6 @@ public abstract class Enumeration
         return fields.Select(f => f.GetValue(null)).Cast<T>();
     }
 
-    public static T FromValue<T>(int value) where T : Enumeration
-    {
-        return Parse<T>(item => item.Id == value);
-    }
-
     private static T Parse<T>(Func<T, bool> predicate) where T : Enumeration
     {
         return GetAll<T>().FirstOrDefault(predicate);
@@ -42,7 +37,7 @@ public abstract class Enumeration
 
     public static T FromName<T>(string name) where T : Enumeration
     {
-        var state = GetAll<T>().SingleOrDefault(s => string.Equals(s.Name, name, StringComparison.CurrentCultureIgnoreCase));
+        var state = Parse<T>(s => string.Equals(s.Name, name, StringComparison.CurrentCultureIgnoreCase));
 
         if (state == null)
         {
@@ -54,11 +49,11 @@ public abstract class Enumeration
 
     public static T FromId<T>(int id) where T : Enumeration
     {
-        var state = GetAll<T>().SingleOrDefault(s => s.Id == id);
+        var state = Parse<T>(s => s.Id == id);
 
         if (state == null)
         {
-            throw new DomainException($"Possible values for {typeof(T)}: {string.Join(",", GetAll<T>().Select(s => s.Name))}");
+            throw new DomainException($"Possible values for {typeof(T)}: {string.Join(",", GetAll<T>().Select(s => s.Id))}");
         }
 
         return state;
