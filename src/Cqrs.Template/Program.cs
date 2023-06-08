@@ -1,6 +1,4 @@
-using Cqrs.Template.Application.CommandHandlers;
 using Cqrs.Template.Application.Validations;
-using MediatR;
 using Cqrs.Template.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
@@ -23,9 +21,7 @@ builder.Services.AddCustomAuthentication();
 builder.Services.AddApiVersioning();
 builder.Services.AddVersionedApiExplorer();
 builder.Services.AddSwaggerSetup();
-builder.Services.AddAutoMapper();
 builder.Services.AddDependencyInjectionSetup(builder.Configuration);
-builder.Services.AddMediatR(typeof(CommandHandler<,>));
 builder.Services.AddScoped<GlobalExceptionFilterAttribute>();
 builder.Services.AddDatabaseSetup();
 builder.Services.AddControllers();

@@ -23,13 +23,13 @@ public static class HealthCheckSetup
 
     public static void MapHealthCheck(this IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapHealthChecks("/hc", new HealthCheckOptions
+        endpoints.MapHealthChecks("/_health", new HealthCheckOptions
         {
             Predicate = _ => true,
             ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
         });
 
-        endpoints.MapHealthChecks("/liveness", new HealthCheckOptions
+        endpoints.MapHealthChecks("/_live", new HealthCheckOptions
         {
             Predicate = r => r.Name.Contains("self")
         });

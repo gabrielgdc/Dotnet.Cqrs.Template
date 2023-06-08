@@ -1,4 +1,5 @@
 ﻿using Cqrs.Template.Application.Behaviors;
+using Cqrs.Template.Application.CommandHandlers;
 using Cqrs.Template.Domain.Exceptions;
 using Cqrs.Template.Infra.CrossCutting.Environments.Configurations;
 using Cqrs.Template.Infra.CrossCutting.IoC.Configurations;
@@ -20,13 +21,16 @@ public static class NativeInjectorBootstrapper
     private static void RegisterData(IServiceCollection services)
     {
         services.AddMemoryCache();
-        // here goes your repository injection
-        // sample: services.AddScoped<IUserRepository, UserRepository>();
     }
 
     private static void RegisterMediator(IServiceCollection services)
     {
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(PipelineBehavior<,>));
+        services.AddMediatR(c =>
+        {
+            c.RegisterServicesFromAssemblyContaining(typeof(CommandHandler<,>));
+            c.AddOpenBehavior(typeof(PipelineBehavior<,>));
+        });
+
         services.AddScoped<INotificationHandler<ExceptionNotification>, ExceptionNotificationHandler>();
     }
 

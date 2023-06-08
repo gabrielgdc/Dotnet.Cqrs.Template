@@ -60,8 +60,8 @@ public static class CustomLogSetup
     private static LoggerConfiguration ConfigureFilters(this LoggerConfiguration loggerConfiguration)
     {
         return loggerConfiguration
-            .Filter.ByExcluding("if StatusCode = 200 then RequestPath like '/hc' or '/health%' else ''")
-            .Filter.ByExcluding("RequestPath like '%liveness%'")
+            .Filter.ByExcluding("if StatusCode = 200 then RequestPath like '/_health' or '/_health%' else ''")
+            .Filter.ByExcluding("RequestPath like '%live%'")
             .Filter.ByExcluding("RequestPath like '%swagger%'")
             .Filter.ByExcluding("RequestPath like '%swagger%'")
             .Filter.ByExcluding("QueryString like 'password' or 'psw' or 'senha'");

@@ -4,21 +4,18 @@ using MediatR;
 
 namespace Cqrs.Template.Domain.SeedWork;
 
-public class Entity
+public abstract class Entity
 {
-    private int? _requestedHashCode;
-    private Guid _id;
+    public virtual Guid Id { get; }
 
-    public virtual Guid Id => _id;
-
-    protected void SetId()
+    protected Entity()
     {
-        _id = Guid.NewGuid();
+        Id = Guid.NewGuid();
     }
 
     #region Entity
 
-    public bool IsTransient()
+    private bool IsTransient()
     {
         return Id == default;
     }
@@ -42,11 +39,9 @@ public class Entity
 
     public override int GetHashCode()
     {
-        if (IsTransient()) return base.GetHashCode();
+        if (IsTransient()) return default;
 
-        _requestedHashCode ??= Id.GetHashCode() ^ 31;
-
-        return _requestedHashCode.Value;
+        return Id.GetHashCode() ^ 31;
     }
 
     public static bool operator ==(Entity left, Entity right)

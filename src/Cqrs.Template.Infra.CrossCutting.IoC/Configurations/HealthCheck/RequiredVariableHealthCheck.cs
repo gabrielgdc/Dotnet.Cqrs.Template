@@ -13,7 +13,7 @@ internal class RequiredVariablesHealthCheck : IHealthCheck
 
         return Task.FromResult(
             !string.IsNullOrWhiteSpace(variable)
-                ? HealthCheckResult.Healthy("Mapped variable")
+                ? HealthCheckResult.Healthy("Variable mapped")
                 : HealthCheckResult.Unhealthy($"Variable not mapped: {context.Registration.Name}")
         );
     }
