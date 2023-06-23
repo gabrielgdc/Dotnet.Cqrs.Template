@@ -19,6 +19,7 @@ public static class HealthCheckSetup
         // ADD OTHER CHECKS HERE
 
         hcBuilder.AddCheck<RequiredSectionsHealthCheck<ApplicationConfiguration>>(nameof(ApplicationConfiguration));
+        hcBuilder.AddCheck<RequiredSectionsHealthCheck<BasicAuthenticationConfiguration>>(nameof(BasicAuthenticationConfiguration));
     }
 
     public static void MapHealthCheck(this IEndpointRouteBuilder endpoints)

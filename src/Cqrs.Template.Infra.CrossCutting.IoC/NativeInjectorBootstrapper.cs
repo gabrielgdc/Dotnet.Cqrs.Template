@@ -37,5 +37,6 @@ public static class NativeInjectorBootstrapper
     private static void RegisterEnvironments(IServiceCollection services, IConfiguration configuration)
     {
         services.AddEnvironmentVariableSection<ApplicationConfiguration>(configuration, nameof(ApplicationConfiguration));
+        services.AddEnvironmentVariableSection<BasicAuthenticationConfiguration>(configuration, nameof(BasicAuthenticationConfiguration));
     }
 }
