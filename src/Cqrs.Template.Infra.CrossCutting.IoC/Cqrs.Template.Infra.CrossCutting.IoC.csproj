@@ -24,4 +24,8 @@
         <ProjectReference Include="..\cqrs.template.infra.Data\cqrs.template.infra.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Configurations\Swagger\ReplaceVersionWithExactValueInPathFilter.cs" />
+    </ItemGroup>
+
 </Project>
