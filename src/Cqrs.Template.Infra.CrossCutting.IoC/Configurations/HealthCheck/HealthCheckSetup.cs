@@ -16,7 +16,6 @@ public static class HealthCheckSetup
         var hcBuilder = services.AddHealthChecks();
 
         hcBuilder.AddCheck("Self Check API", () => HealthCheckResult.Healthy("HealthCheck Working For Cqrs.Template"));
-        // ADD OTHER CHECKS HERE
 
         hcBuilder.AddCheck<RequiredSectionsHealthCheck<ApplicationConfiguration>>(nameof(ApplicationConfiguration));
         hcBuilder.AddCheck<RequiredSectionsHealthCheck<BasicAuthenticationConfiguration>>(nameof(BasicAuthenticationConfiguration));
