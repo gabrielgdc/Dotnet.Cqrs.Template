@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using Cqrs.Template.Infra.CrossCutting.IoC.Configurations.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,15 +26,6 @@ public static class SwaggerSetup
                 Title = string.Join("", "Cqrs.Template".Split(".")),
                 Description = "Some description",
                 Contact = new OpenApiContact { Name = "YourName", Email = "youremail@email.com" }
-            });
-
-            s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-            {
-                Name = "Authorization",
-                Type = SecuritySchemeType.Http,
-                In = ParameterLocation.Header,
-                Scheme = "bearer",
-                Description = "Jwt token for authentication"
             });
 
             s.AddSecurityDefinition("Basic", new OpenApiSecurityScheme
@@ -71,6 +65,7 @@ public static class SwaggerSetup
 
             s.OperationFilter<RemoveVersionParameterFilter>();
             s.DocumentFilter<ReplaceVersionWithExactValueInPathFilter>();
+            s.DocumentFilter<LowerCaseDocumentFilter>();
             s.EnableAnnotations();
         });
 
@@ -88,8 +83,7 @@ public static class SwaggerSetup
             c.DocumentTitle = string.Join(" ", "Cqrs.Template".Split(".")) + " Swagger UI";
             foreach (var description in provider.ApiVersionDescriptions)
             {
-                c.SwaggerEndpoint($"{description.GroupName}/swagger.json",
-                    description.GroupName.ToUpperInvariant());
+                c.SwaggerEndpoint($"{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
             }
         });
     }
@@ -122,8 +116,10 @@ public static class SwaggerSetup
     {
         private readonly IApiVersionDescriptionProvider _provider;
 
-        public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider) =>
+        public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider)
+        {
             _provider = provider;
+        }
 
         public void Configure(SwaggerGenOptions options)
         {
