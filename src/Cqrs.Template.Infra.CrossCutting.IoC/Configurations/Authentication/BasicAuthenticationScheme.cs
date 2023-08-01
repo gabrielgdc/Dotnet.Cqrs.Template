@@ -32,14 +32,14 @@ public class BasicAuthenticationScheme : AuthenticationHandler<BasicAuthenticati
         {
             if (!Context.Request.Headers.TryGetValue("Authorization", out var authorizationHeader))
             {
-                return Task.FromResult(AuthenticateResult.Fail("Crendenciais inválidas"));
+                return Task.FromResult(AuthenticateResult.Fail("Invalid credentials"));
             }
 
             var authorization = authorizationHeader.ToString();
 
             if (!authorization.Contains("Basic", StringComparison.OrdinalIgnoreCase))
             {
-                return Task.FromResult(AuthenticateResult.Fail("Crendenciais inválidas"));
+                return Task.FromResult(AuthenticateResult.Fail("Invalid credentials"));
             }
 
             var basicAuth = authorization.Replace("Basic", "", StringComparison.OrdinalIgnoreCase).Trim();
@@ -52,7 +52,7 @@ public class BasicAuthenticationScheme : AuthenticationHandler<BasicAuthenticati
 
             if (!username.Equals(_basicAuthenticationConfiguration.Username) || !password.Equals(_basicAuthenticationConfiguration.Password))
             {
-                return Task.FromResult(AuthenticateResult.Fail("Crendenciais inválidas"));
+                return Task.FromResult(AuthenticateResult.Fail("Invalid credentials"));
             }
 
             var ticket = GetAuthenticationTicket(new List<Claim>());
@@ -60,8 +60,8 @@ public class BasicAuthenticationScheme : AuthenticationHandler<BasicAuthenticati
         }
         catch (Exception e)
         {
-            Logger.LogCritical("Ocorreu um erro ao autenticar a requisição #### Exception: {0}, StackTrace: {1} ####", e.Message, e.StackTrace);
-            return Task.FromResult(AuthenticateResult.Fail("Crendenciais inválidas"));
+            Logger.LogCritical("It was not possible to authorize the request #### Exception: {Exception} ####", e);
+            return Task.FromResult(AuthenticateResult.Fail("Invalid credentials"));
         }
     }
 
