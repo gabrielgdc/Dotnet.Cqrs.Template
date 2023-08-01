@@ -28,7 +28,9 @@ public static class NativeInjectorBootstrapper
         services.AddMediatR(c =>
         {
             c.RegisterServicesFromAssemblyContaining(typeof(CommandHandler<,>));
-            c.AddOpenBehavior(typeof(PipelineBehavior<,>));
+            c.AddOpenBehavior(typeof(LoggingBehavior<,>));
+            c.AddOpenBehavior(typeof(ValidatorBehavior<,>));
+            c.AddOpenBehavior(typeof(CachingBehavior<,>));
         });
 
         services.AddScoped<INotificationHandler<ExceptionNotification>, ExceptionNotificationHandler>();

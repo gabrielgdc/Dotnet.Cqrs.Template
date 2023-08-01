@@ -12,6 +12,7 @@ public class BasicAuthenticationConfigurationValidator : Validator<BasicAuthenti
             .NotNull();
 
         RuleFor(c => c.Password)
+            .MinimumLength(8)
             .NotEmpty()
             .NotNull();
     }
