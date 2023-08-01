@@ -2,7 +2,9 @@
 using Cqrs.Template.Domain.Exceptions;
 using System.Threading.Tasks;
 using Cqrs.Template.Dtos;
+using Cqrs.Template.Infra.CrossCutting.IoC.Configurations.Authentication;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +12,7 @@ namespace Cqrs.Template.Controllers.V1;
 
 [ApiVersion("1")]
 [ApiController]
+[Authorize(AuthenticationSchemes = CustomAuthenticationSchemes.Basic)]
 public class InitialController : BaseController
 {
     public InitialController(INotificationHandler<ExceptionNotification> notifications) : base(notifications)

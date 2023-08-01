@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <LangVersion>10</LangVersion>
         <RootNamespace>Cqrs.Template.Application</RootNamespace>
     </PropertyGroup>
@@ -9,9 +9,9 @@
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="12.0.1" />
         <PackageReference Include="FluentValidation" Version="11.5.2" />
-        <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="7.0.5" />
+        <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="7.0.8" />
         <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="7.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
     </ItemGroup>
     
     <ItemGroup>

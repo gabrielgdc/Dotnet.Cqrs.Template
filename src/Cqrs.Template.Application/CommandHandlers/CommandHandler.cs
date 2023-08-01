@@ -8,8 +8,7 @@ using Cqrs.Template.Domain.Enums;
 
 namespace Cqrs.Template.Application.CommandHandlers;
 
-public abstract class CommandHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
-    where TRequest : Command<TResponse>
+public abstract class CommandHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse> where TRequest : Command<TResponse>
 {
     private readonly IUnitOfWork _uow;
     protected readonly IMediator Bus;
@@ -19,7 +18,7 @@ public abstract class CommandHandler<TRequest, TResponse> : IRequestHandler<TReq
     {
         _uow = uow;
         Bus = bus;
-        _notifications = (ExceptionNotificationHandler) notifications;
+        _notifications = (ExceptionNotificationHandler)notifications;
     }
 
     public async Task<bool> CommitAsync()

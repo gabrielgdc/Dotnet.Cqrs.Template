@@ -52,10 +52,7 @@ app.UseAuthorization();
 var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 app.UseSwaggerSetup(apiVersionDescriptionProvider);
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapHealthCheck();
-});
+app.MapControllers();
+app.MapHealthCheck();
 
 app.Run();

@@ -28,7 +28,9 @@ public static class NativeInjectorBootstrapper
         services.AddMediatR(c =>
         {
             c.RegisterServicesFromAssemblyContaining(typeof(CommandHandler<,>));
-            c.AddOpenBehavior(typeof(PipelineBehavior<,>));
+            c.AddOpenBehavior(typeof(LoggingBehavior<,>));
+            c.AddOpenBehavior(typeof(ValidatorBehavior<,>));
+            c.AddOpenBehavior(typeof(CachingBehavior<,>));
         });
 
         services.AddScoped<INotificationHandler<ExceptionNotification>, ExceptionNotificationHandler>();
@@ -37,5 +39,6 @@ public static class NativeInjectorBootstrapper
     private static void RegisterEnvironments(IServiceCollection services, IConfiguration configuration)
     {
         services.AddEnvironmentVariableSection<ApplicationConfiguration>(configuration, nameof(ApplicationConfiguration));
+        services.AddEnvironmentVariableSection<BasicAuthenticationConfiguration>(configuration, nameof(BasicAuthenticationConfiguration));
     }
 }

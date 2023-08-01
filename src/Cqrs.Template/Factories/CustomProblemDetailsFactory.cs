@@ -7,8 +7,8 @@ namespace Cqrs.Template.Factories;
 
 public static class CustomProblemDetailsFactory
 {
-    private const string ClientErrorDetail = "Ocorreu um erro com a sua requisição, verique os parâmetros obrigatórios";
-    private const string ServerErrorDetail = "Ocorreu um erro interno, tente novamente mais tarde";
+    private const string ClientErrorDetail = "Please refer to the errors property for additional details.";
+    private const string ServerErrorDetail = "There's an problem in the server, please try again later";
 
     public static ProblemDetails CreateProblemDetailsFromContext(HttpContext httpContext, ExceptionNotificationHandler exceptionHandler)
     {
@@ -16,7 +16,7 @@ public static class CustomProblemDetailsFactory
 
         return new ProblemDetails
         {
-            Title = "Erro ao processar sua requisição",
+            Title = "It was not possible to process your request",
             Detail = isClientError ? ClientErrorDetail : ServerErrorDetail,
             Status = isClientError ? StatusCodes.Status400BadRequest : StatusCodes.Status500InternalServerError,
             Instance = httpContext.Request.Path.ToString(),
@@ -33,7 +33,7 @@ public static class CustomProblemDetailsFactory
     {
         return new ProblemDetails
         {
-            Title = "Erro ao processar sua requisição",
+            Title = "It was not possible to process your request",
             Detail = detail,
             Status = StatusCodes.Status500InternalServerError,
             Instance = httpContext.Request.Path.ToString(),

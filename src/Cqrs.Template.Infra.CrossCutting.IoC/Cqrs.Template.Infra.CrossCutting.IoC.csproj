@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
-        <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
         <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
         <PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
         <PackageReference Include="Serilog.Expressions" Version="3.4.1" />
@@ -22,6 +22,10 @@
         <ProjectReference Include="..\Cqrs.Template.Application\Cqrs.Template.Application.csproj" />
         <ProjectReference Include="..\Cqrs.Template.Infra.CrossCutting.Environments\Cqrs.Template.Infra.CrossCutting.Environments.csproj" />
         <ProjectReference Include="..\cqrs.template.infra.Data\cqrs.template.infra.Data.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Configurations\Swagger\ReplaceVersionWithExactValueInPathFilter.cs" />
     </ItemGroup>
 
 </Project>
