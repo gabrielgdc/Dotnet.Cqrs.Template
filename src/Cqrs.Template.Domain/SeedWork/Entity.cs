@@ -56,7 +56,7 @@ public abstract class Entity
 
     #endregion
 
-    #region domain events
+    #region DomainEvents
 
     private List<INotification> _domainEvents;
     public IReadOnlyCollection<INotification> DomainEvents => _domainEvents?.AsReadOnly();

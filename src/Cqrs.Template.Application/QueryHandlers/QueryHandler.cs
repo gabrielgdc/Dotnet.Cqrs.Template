@@ -5,34 +5,19 @@ using Cqrs.Template.Application.Queries;
 using Cqrs.Template.Infra.CrossCutting.Environments.Configurations;
 using MediatR;
 using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Options;
 
 namespace Cqrs.Template.Application.QueryHandlers;
 
 public abstract class QueryHandler<TQuery, TResponse> : IRequestHandler<TQuery, TResponse> where TQuery : Query<TResponse>
 {
-    private readonly IDbConnection _dbConnection;
+    protected readonly IDbConnection DbConnection;
+    protected readonly IMediator Bus;
 
-    protected QueryHandler(ApplicationConfiguration applicationConfiguration)
+    protected QueryHandler(IOptions<ApplicationConfiguration> applicationConfiguration, IMediator bus)
     {
-        _dbConnection = new SqliteConnection(applicationConfiguration.ConnectionString);
-    }
-
-    protected IDbConnection GetDatabaseConnection()
-    {
-        if (_dbConnection.State == ConnectionState.Closed)
-        {
-            _dbConnection.Open();
-        }
-
-        return _dbConnection;
-    }
-
-    protected void CloseDatabaseConnection()
-    {
-        if (_dbConnection.State is ConnectionState.Open or ConnectionState.Broken)
-        {
-            _dbConnection.Close();
-        }
+        DbConnection = new SqliteConnection(applicationConfiguration.Value.ConnectionString);
+        Bus = bus;
     }
 
     public abstract Task<TResponse> Handle(TQuery request, CancellationToken cancellationToken);

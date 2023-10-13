@@ -1,5 +1,7 @@
 using System;
+using Cqrs.Template.Domain.SeedWork;
 using Cqrs.Template.Infra.Data.Context;
+using Cqrs.Template.Infra.Data.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Cqrs.Template.Infra.CrossCutting.IoC.Configurations;
@@ -11,5 +13,6 @@ public static class DatabaseSetup
         ArgumentNullException.ThrowIfNull(services);
 
 		services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Scoped);
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 	}
 }

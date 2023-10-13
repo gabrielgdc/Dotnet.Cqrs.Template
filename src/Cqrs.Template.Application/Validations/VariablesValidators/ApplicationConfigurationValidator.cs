@@ -15,6 +15,10 @@ public class ApplicationConfigurationValidator : Validator<ApplicationConfigurat
             .NotNull()
             .NotEmpty();
 
+        RuleFor(c => c.Schema)
+            .NotNull()
+            .NotEmpty();
+
         RuleFor(c => c.GlobalErrorCode)
             .NotNull()
             .NotEmpty();

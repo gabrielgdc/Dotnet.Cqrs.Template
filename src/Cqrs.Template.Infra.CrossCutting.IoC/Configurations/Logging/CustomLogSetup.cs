@@ -4,6 +4,7 @@ using Serilog.Exceptions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Cqrs.Template.Infra.CrossCutting.Environments.Configurations;
+using Cqrs.Template.Infra.CrossCutting.IoC.Configurations.Logging.Enrichers;
 using Microsoft.AspNetCore.Builder;
 using Serilog.Events;
 
@@ -11,28 +12,26 @@ namespace Cqrs.Template.Infra.CrossCutting.IoC.Configurations.Logging;
 
 public static class CustomLogSetup
 {
-    public static void AddCustomLogging(this IServiceCollection services, IConfiguration configuration)
+    public static void AddCustomLogging(this IServiceCollection services, IConfiguration configuration, string serviceName)
     {
         ArgumentNullException.ThrowIfNull(services);
+        ArgumentNullException.ThrowIfNull(configuration);
+
         const string outputTemplate = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
 
         var loggerConfigurations = new LoggerConfiguration()
             .ConfigureMinimumLevel()
             .ConfigureFilters()
-            .Enrich.FromLogContext()
-            .Enrich.WithCorrelationId()
-            .Enrich.WithExceptionDetails();
+            .ConfigureEnrichers(serviceName);
 
-        var environment = configuration.GetSection(nameof(ApplicationConfiguration)).Get<ApplicationConfiguration>().Environment;
+        var environment = configuration.GetSection(nameof(ApplicationConfiguration)).Get<ApplicationConfiguration>();
 
-        if ( string.Equals(environment, "Development", StringComparison.InvariantCultureIgnoreCase) )
+        if (environment.LogsOnConsole)
         {
             loggerConfigurations.WriteTo.Async(logger => logger.Console(outputTemplate: outputTemplate));
         }
-        else
-        {
-            // TODO: Add custom sink if needed
-        }
+
+        // Add custom sink if needed
 
         Log.Logger = loggerConfigurations.CreateLogger();
     }
@@ -48,6 +47,16 @@ public static class CustomLogSetup
                 diagnosticContext.Set("ResponseHeader", httpContext.Response.Headers);
             };
         });
+    }
+
+    private static LoggerConfiguration ConfigureEnrichers(this LoggerConfiguration loggerConfiguration, string serviceName)
+    {
+        return loggerConfiguration
+            .Enrich.With<DateTimeEnricher>()
+            .Enrich.WithProperty("ServiceName", new ScalarValue(serviceName))
+            .Enrich.FromLogContext()
+            .Enrich.WithCorrelationId()
+            .Enrich.WithExceptionDetails();
     }
 
     private static LoggerConfiguration ConfigureMinimumLevel(this LoggerConfiguration loggerConfiguration)

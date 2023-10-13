@@ -1,4 +1,4 @@
-﻿namespace Cqrs.Template.Domain.Enums;
+﻿namespace Cqrs.Template.Domain.Exceptions;
 
 public enum ExceptionType
 {

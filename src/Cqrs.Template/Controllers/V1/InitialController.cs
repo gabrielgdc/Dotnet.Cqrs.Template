@@ -21,7 +21,9 @@ public class InitialController : BaseController
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
-    public Task<IActionResult> Sample()
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public Task<IActionResult> GetSample()
     {
         var ipsum = new List<string> { "Nothing", "Here", "Just", "Hello" };
         return Task.FromResult(CreateResponse(Ok(new Response<object>(ipsum))));

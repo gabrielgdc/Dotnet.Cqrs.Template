@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Cqrs.Template.Domain.Enums;
 using MediatR;
 
 namespace Cqrs.Template.Domain.Exceptions;

@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Cqrs.Template.Domain.SeedWork;
 using Cqrs.Template.Domain.Exceptions;
 using Cqrs.Template.Application.Commands;
-using Cqrs.Template.Domain.Enums;
 
 namespace Cqrs.Template.Application.CommandHandlers;
 

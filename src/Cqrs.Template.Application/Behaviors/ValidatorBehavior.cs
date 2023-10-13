@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Cqrs.Template.Domain.Enums;
 using Cqrs.Template.Domain.Exceptions;
 using FluentValidation;
 using MediatR;

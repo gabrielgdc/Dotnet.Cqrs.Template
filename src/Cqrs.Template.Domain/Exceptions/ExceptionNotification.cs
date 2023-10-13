@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Cqrs.Template.Domain.Enums;
 using Cqrs.Template.Domain.Events;
 
 namespace Cqrs.Template.Domain.Exceptions;

@@ -4,7 +4,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Cqrs.Template.Infra.CrossCutting.IoC.Configurations.Swagger;
 
-public class LowerCaseDocumentFilter : IDocumentFilter
+internal class LowerCaseDocumentFilter : IDocumentFilter
 {
     public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
     {
