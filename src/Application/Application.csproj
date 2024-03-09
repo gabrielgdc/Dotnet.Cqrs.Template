@@ -25,6 +25,12 @@
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>SampleQueryErrorMessages.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+      <EmbeddedResource Update="Queries\SampleQuery\SampleQueryErrorMessages.en-us.resx">
+        <DependentUpon>SampleQueryErrorMessages.resx</DependentUpon>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Queries\SampleQuery\SampleQueryErrorMessages.pt-br.resx">
+        <DependentUpon>SampleQueryErrorMessages.resx</DependentUpon>
+      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
