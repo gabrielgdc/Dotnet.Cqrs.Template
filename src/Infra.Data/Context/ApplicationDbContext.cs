@@ -31,9 +31,13 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
+    /// <summary>
+    /// Dispatch the domain events and save changes if there's no domain event or all domain events has been successfully handled.
+    /// </summary>
+    /// <param name="cancellationToken">A cancellation token</param>
     public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
     {
-        await _bus.DispatchDomainEventsAsync(this);
+        await _bus.DispatchDomainEventsAsync(this, cancellationToken);
 
         await base.SaveChangesAsync(cancellationToken);
 
