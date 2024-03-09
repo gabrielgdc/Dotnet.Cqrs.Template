@@ -1,3 +1,4 @@
+using Api.Factories;
 using Api.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -8,7 +9,8 @@ namespace Api.Controllers;
 [Route("[controller]/v{version:apiVersion}")]
 [ServiceFilter(typeof(GlobalExceptionFilterAttribute))]
 [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-public abstract class BaseController(IMediator bus) : Controller
+public abstract class BaseController(IMediator bus, ICustomProblemDetailsFactory customProblemDetailsFactory) : Controller
 {
     protected readonly IMediator Bus = bus;
+    protected readonly ICustomProblemDetailsFactory CustomProblemDetailsFactory = customProblemDetailsFactory;
 }

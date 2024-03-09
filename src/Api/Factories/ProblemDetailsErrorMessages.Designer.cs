@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Application.Queries.SampleQuery {
+namespace Api.Factories {
     using System;
     
     
@@ -21,14 +21,14 @@ namespace Application.Queries.SampleQuery {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class SampleQueryErrorMessages {
+    internal class ProblemDetailsErrorMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal SampleQueryErrorMessages() {
+        internal ProblemDetailsErrorMessages() {
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace Application.Queries.SampleQuery {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Application.Queries.SampleQuery.SampleQueryErrorMessages", typeof(SampleQueryErrorMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Api.Factories.ProblemDetailsErrorMessages", typeof(ProblemDetailsErrorMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,38 +60,38 @@ namespace Application.Queries.SampleQuery {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An exception was forced..
+        ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string ExceptionForced {
+        internal static string UnhandledException {
             get {
-                return ResourceManager.GetString("ExceptionForced", resourceCulture);
+                return ResourceManager.GetString("UnhandledException", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string ExceptionForcedDetail {
+        internal static string UnhandledExceptionDetail {
             get {
-                return ResourceManager.GetString("ExceptionForcedDetail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There was an error on querying a sample..
-        /// </summary>
-        internal static string UnexpectedError {
-            get {
-                return ResourceManager.GetString("UnexpectedError", resourceCulture);
+                return ResourceManager.GetString("UnhandledExceptionDetail", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string UnexpectedErrorDetail {
+        internal static string ValidationError {
             get {
-                return ResourceManager.GetString("UnexpectedErrorDetail", resourceCulture);
+                return ResourceManager.GetString("ValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ValidationErrorDetail {
+            get {
+                return ResourceManager.GetString("ValidationErrorDetail", resourceCulture);
             }
         }
     }

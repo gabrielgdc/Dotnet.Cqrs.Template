@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Api.Filters;
 
-public class GlobalExceptionFilterAttribute(ILogger logger) : Attribute, IExceptionFilter
+public class GlobalExceptionFilterAttribute(ICustomProblemDetailsFactory customProblemDetailsFactory, ILogger logger) : Attribute, IExceptionFilter
 {
     public void OnException(ExceptionContext context)
     {
@@ -13,6 +13,6 @@ public class GlobalExceptionFilterAttribute(ILogger logger) : Attribute, IExcept
 
         logger.LogError(eventId, context.Exception, context.Exception.Message);
 
-        context.Result = CustomProblemDetailsFactory.CreateProblemDetailsActionResult(context.HttpContext);
+        context.Result = customProblemDetailsFactory.CreateProblemDetailsActionResult();
     }
 }

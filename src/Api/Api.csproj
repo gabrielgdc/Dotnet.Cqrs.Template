@@ -16,4 +16,19 @@
     <ProjectReference Include="..\Infra.CrossCutting.IoC\Infra.CrossCutting.IoC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Factories\ProblemDetailsErrorMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProblemDetailsErrorMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Factories\ProblemDetailsErrorMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProblemDetailsErrorMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

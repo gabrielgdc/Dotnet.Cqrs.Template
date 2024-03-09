@@ -12,6 +12,7 @@
         <PackageReference Include="OneOf" Version="3.0.263" />
         <PackageReference Include="OneOf.SourceGenerator" Version="3.0.263" />
         <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.21.130" />
+        <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="8.0.2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -24,9 +25,6 @@
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>SampleQueryErrorMessages.Designer.cs</LastGenOutput>
       </EmbeddedResource>
-      <EmbeddedResource Update="Queries\SampleQuery\SampleQueryErrorMessages.pt-br.resx">
-        <DependentUpon>SampleQueryErrorMessages.resx</DependentUpon>
-      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
@@ -36,7 +34,4 @@
         <DependentUpon>SampleQueryErrorMessages.resx</DependentUpon>
       </Compile>
     </ItemGroup>
-
-
-
 </Project>
