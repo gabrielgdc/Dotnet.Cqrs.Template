@@ -1,4 +1,6 @@
 {
+  "version": 1,
+  "isRoot": true,
   "tasks": [
     {
       "name": "dotnet-format-staged-files",
