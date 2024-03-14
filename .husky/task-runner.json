@@ -1,6 +1,4 @@
 {
-  "version": 1,
-  "isRoot": true,
   "tasks": [
     {
       "name": "dotnet-format-staged-files",
@@ -13,6 +11,17 @@
       ],
       "include": [
         "**/*.cs"
+      ]
+    },
+    {
+      "name": "commit-message-linter",
+      "command": "dotnet",
+      "args": [
+        "husky",
+        "exec",
+        ".husky/csx/commit-lint.csx",
+        "--args",
+        "${args}"
       ]
     }
   ]
