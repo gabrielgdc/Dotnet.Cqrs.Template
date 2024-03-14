@@ -9,11 +9,23 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Queries.SampleQuery;
 
+/// <summary>
+/// Represents a query handler responsible for executing the SampleQuery and returning either sample data or appropriate error responses.
+/// </summary>
 public class SampleQueryHandler(IStringLocalizer<SampleQueryHandler> stringLocalizer, DatabaseConfiguration databaseConfiguration, ILogger logger)
     : QueryHandler<SampleQuery, SampleQueryResult>(databaseConfiguration, logger, stringLocalizer)
 {
+    /// <summary>
+    /// A collection of sample strings for demonstration purposes.
+    /// </summary>
     private static readonly string[] Samples = ["Sample", "Query", "Execution"];
 
+    /// <summary>
+    /// Handles the execution of the SampleQuery, performing validation, simulating potential errors, and returning query results or error responses.
+    /// </summary>
+    /// <param name="request">The SampleQuery object containing query parameters.</param>
+    /// <param name="cancellationToken">A cancellation token to signal cancellation of the operation.</param>
+    /// <returns>A Task representing the asynchronous operation that produces a SampleQueryResult object containing either sample data or error information.</returns>
     public override async Task<SampleQueryResult> Handle(SampleQuery request, CancellationToken cancellationToken)
     {
         try

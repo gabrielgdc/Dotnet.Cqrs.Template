@@ -5,6 +5,14 @@ using System.Reflection;
 
 namespace Domain.SeedWork;
 
+/// <summary>
+/// Represents an immutable value object in the Domain-Driven Design (DDD) pattern.
+/// </summary>
+/// <remarks>
+/// A value object encapsulates a simple, immutable data structure that represents a domain concept. Its equality
+/// is determined solely by its internal state, and it should not have an object identity. Value objects are often used
+/// as properties of aggregate root entities.
+/// </remarks>
 public abstract class ValueObject : IEquatable<ValueObject>
 {
     public static bool operator ==(ValueObject obj1, ValueObject obj2)

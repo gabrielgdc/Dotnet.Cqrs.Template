@@ -32,9 +32,10 @@ public class ApplicationDbContext : DbContext
     }
 
     /// <summary>
-    /// Dispatch the domain events and save changes if there's no domain event or all domain events has been successfully handled.
+    /// Saves tracked entities to the database, dispatching domain events prior to saving.
     /// </summary>
-    /// <param name="cancellationToken">A cancellation token</param>
+    /// <param name="cancellationToken" type="System.Threading.CancellationToken">A cancellation token to signal cancellation requests.</param>
+    /// <returns>True if the save operation was successful.</returns>
     public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
     {
         await _bus.DispatchDomainEventsAsync(this, cancellationToken);

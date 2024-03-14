@@ -11,6 +11,12 @@ namespace Infra.CrossCutting.IoC.Configurations.HealthCheck;
 
 public static class HealthCheckSetup
 {
+    /// <summary>
+    /// Configures health checks within the service collection.
+    /// </summary>
+    /// <param name="services" type="Microsoft.Extensions.DependencyInjection.IServiceCollection">
+    /// The service collection to add health checks to.
+    /// </param>
     public static void AddHealthCheck(this IServiceCollection services)
     {
         var serviceProvider = services.BuildServiceProvider();
@@ -24,6 +30,12 @@ public static class HealthCheckSetup
         hcBuilder.AddOracle(applicationConfiguration.ConnectionString, name: "ORACLE HEALTHCHECK", timeout: TimeSpan.FromSeconds(10));
     }
 
+    /// <summary>
+    /// Maps health check endpoints to specific paths within the application.
+    /// </summary>
+    /// <param name="endpoints" type="Microsoft.AspNetCore.Builder.IEndpointRouteBuilder">
+    /// The IEndpointRouteBuilder instance used for endpoint configuration.
+    /// </param>
     public static void MapHealthCheck(this IEndpointRouteBuilder endpoints)
     {
         endpoints.MapHealthChecks("/_health", new HealthCheckOptions

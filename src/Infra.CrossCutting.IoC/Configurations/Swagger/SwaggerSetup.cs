@@ -8,6 +8,13 @@ namespace Infra.CrossCutting.IoC.Configurations.Swagger;
 
 public static class SwaggerSetup
 {
+    /// <summary>
+    /// Configures Swagger documentation generation for the application.
+    /// </summary>
+    /// <param name="services" type="Microsoft.Extensions.DependencyInjection.IServiceCollection">
+    /// The service collection to add Swagger services to.
+    /// </param>
+    /// <exception cref="ArgumentNullException">Thrown if the `services` parameter is null.</exception>
     public static void AddSwaggerSetup(this IServiceCollection services)
     {
         ArgumentNullException.ThrowIfNull(services);
@@ -26,6 +33,11 @@ public static class SwaggerSetup
 
     }
 
+    /// <summary>
+    /// Maps Swagger endpoints for multiple API versions within the application.
+    /// </summary>
+    /// <param name="app" type="Microsoft.AspNetCore.Builder.IApplicationBuilder">The application builder instance.</param>
+    /// <exception cref="ArgumentNullException">Thrown if the `app` parameter is null.</exception>
     public static void MapSwagger(this IApplicationBuilder app)
     {
         ArgumentNullException.ThrowIfNull(app);
