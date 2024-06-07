@@ -14,9 +14,6 @@
     <data name="ValidationErrorDetail" xml:space="preserve">
         <value>The request data is invalid. Please check the errors and try again.</value>
     </data>
-    <data name="ValidationErrorDetail" xml:space="preserve">
-        <value>Validation error.</value>
-    </data>
     <data name="ValidationError" xml:space="preserve">
         <value>Validation error.</value>
     </data>

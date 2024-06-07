@@ -18,12 +18,7 @@ public static class NativeInjectorBootstrapper
     public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
     {
         RegisterMediator(services);
-        RegisterEnvironments(
-
-
-
-            services, configuration
-                    );
+        RegisterEnvironments(services, configuration);
     }
 
     /// <summary>

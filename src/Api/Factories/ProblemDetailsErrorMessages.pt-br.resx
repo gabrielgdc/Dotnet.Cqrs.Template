@@ -14,9 +14,6 @@
     <data name="ValidationErrorDetail" xml:space="preserve">
         <value>Os dados da requisição são inválidos. Por favor, verifique os erros e tente novamente.</value>
     </data>
-    <data name="ValidationErrorDetail" xml:space="preserve">
-        <value>Erro de validação.</value>
-    </data>
     <data name="ValidationError" xml:space="preserve">
         <value>Erro de validação.</value>
     </data>
