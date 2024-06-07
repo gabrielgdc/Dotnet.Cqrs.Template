@@ -1,10 +1,10 @@
+using Infra.CrossCutting.Environments.Configurations;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Infra.CrossCutting.Environments.Configurations;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Data.Context;
 

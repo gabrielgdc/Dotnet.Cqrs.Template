@@ -1,11 +1,11 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Application.Common;
 using Application.Queries.SampleQuery.Dtos;
 using Infra.CrossCutting.Environments.Configurations;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Application.Queries.SampleQuery;
 

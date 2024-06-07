@@ -1,6 +1,6 @@
-using System.Threading.Tasks;
 using Domain.SeedWork;
 using Infra.Data.Context;
+using System.Threading.Tasks;
 
 namespace Infra.Data.UnitOfWork;
 

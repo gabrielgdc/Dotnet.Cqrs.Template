@@ -1,4 +1,3 @@
-using System;
 using HealthChecks.UI.Client;
 using Infra.CrossCutting.Environments.Configurations;
 using Microsoft.AspNetCore.Builder;
@@ -6,6 +5,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System;
 
 namespace Infra.CrossCutting.IoC.Configurations.HealthCheck;
 

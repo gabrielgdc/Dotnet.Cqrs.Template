@@ -1,12 +1,12 @@
-using System.Data;
-using System.Threading;
-using System.Threading.Tasks;
 using Infra.CrossCutting.Environments.Configurations;
 using MediatR;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using OneOf;
 using Oracle.ManagedDataAccess.Client;
+using System.Data;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Application.Queries;
 

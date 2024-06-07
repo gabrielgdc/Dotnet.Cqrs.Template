@@ -1,10 +1,10 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Domain.SeedWork;
 using MediatR;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using OneOf;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Application.Commands;
 

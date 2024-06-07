@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Api.Dtos;
 using Api.Factories;
 using Application.Queries.SampleQuery;
@@ -6,6 +5,7 @@ using Application.Queries.SampleQuery.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Api.Controllers.V1;
 

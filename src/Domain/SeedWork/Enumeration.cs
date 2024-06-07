@@ -1,8 +1,8 @@
+using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Domain.Exceptions;
 
 namespace Domain.SeedWork;
 
@@ -36,7 +36,7 @@ public abstract class Enumeration(int id, string name)
     {
         return Name;
     }
-    
+
     /// <summary>
     /// Retrieves a collection of all enumeration values for a specific derived type.
     /// </summary>
@@ -79,7 +79,7 @@ public abstract class Enumeration(int id, string name)
 
         return state;
     }
-    
+
     /// <summary>
     /// Finds the enumeration value of a specific type with a matching ID.
     /// </summary>

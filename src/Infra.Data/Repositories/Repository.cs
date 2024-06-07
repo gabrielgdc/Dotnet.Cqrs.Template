@@ -19,7 +19,7 @@ public abstract class Repository<TEntity>(DbContext dbContext) : IRepository<TEn
     /// The internal DbSet instance for the entity type managed by the repository.
     /// </summary>
     protected readonly DbSet<TEntity> DbSet = dbContext.Set<TEntity>();
-    
+
     public void Add(TEntity obj)
     {
         DbSet.Add(obj);

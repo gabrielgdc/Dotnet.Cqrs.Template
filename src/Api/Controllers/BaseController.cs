@@ -23,7 +23,7 @@ public abstract class BaseController(IMediator bus, ICustomProblemDetailsFactory
     /// A protected reference to the injected IMediator instance, used for dispatching commands and queries.
     /// </summary>
     protected readonly IMediator Bus = bus;
-    
+
     /// <summary>
     /// A protected reference to the injected ICustomProblemDetailsFactory instance, used for creating problem details responses.
     /// </summary>

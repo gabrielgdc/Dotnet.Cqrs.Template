@@ -1,8 +1,8 @@
-using System;
 using Infra.CrossCutting.Environments.BaseConfigurations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
+using System;
 
 namespace Infra.CrossCutting.IoC.Configurations;
 

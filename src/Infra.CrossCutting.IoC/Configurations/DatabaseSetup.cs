@@ -1,8 +1,8 @@
-using System;
 using Domain.SeedWork;
 using Infra.Data.Context;
 using Infra.Data.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Infra.CrossCutting.IoC.Configurations;
 

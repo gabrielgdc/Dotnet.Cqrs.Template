@@ -1,6 +1,6 @@
+using MediatR;
 using System;
 using System.Collections.Generic;
-using MediatR;
 
 namespace Domain.SeedWork;
 
@@ -65,7 +65,7 @@ public abstract class Entity
 
         return Id.GetHashCode() ^ 31;
     }
-    
+
     /// <summary>
     /// Overloaded equality operator for entity comparison.
     /// </summary>

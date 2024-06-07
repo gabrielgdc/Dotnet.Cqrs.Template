@@ -1,8 +1,8 @@
-using System.Linq;
 using Application.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using System.Linq;
 
 namespace Api.Factories;
 
@@ -18,13 +18,13 @@ public interface ICustomProblemDetailsFactory
     /// <returns></returns>
     /// <param name="error">A error object containing all errors</param>
     IActionResult CreateProblemDetailsActionResult(Error error);
-    
+
     /// <summary>
     /// Creates a problem details model from a ValidationFailed object.
     /// </summary>
     /// <param name="validationFailed">A validation failed containing all failed validations</param>
     IActionResult CreateProblemDetailsActionResult(ValidationFailed validationFailed);
-    
+
     /// <summary>
     /// Creates a generic problem details model.
     /// </summary>
@@ -36,7 +36,7 @@ public interface ICustomProblemDetailsFactory
 public class CustomProblemDetailsFactory(IHttpContextAccessor httpContextAccessor, IStringLocalizer<CustomProblemDetailsFactory> stringLocalizer) : ICustomProblemDetailsFactory
 {
     private readonly HttpContext _httpContext = httpContextAccessor.HttpContext;
-    
+
     public IActionResult CreateProblemDetailsActionResult(Error error)
     {
         const int statusCode = StatusCodes.Status500InternalServerError;

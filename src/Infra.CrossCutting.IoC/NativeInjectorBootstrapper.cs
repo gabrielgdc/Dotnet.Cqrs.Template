@@ -1,4 +1,3 @@
-using Application.Behaviors;
 using Application.Commands;
 using Infra.CrossCutting.Environments.Configurations;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +18,12 @@ public static class NativeInjectorBootstrapper
     public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
     {
         RegisterMediator(services);
-        RegisterEnvironments(services, configuration);
+        RegisterEnvironments(
+
+
+
+            services, configuration
+                    );
     }
 
     /// <summary>
@@ -31,7 +35,6 @@ public static class NativeInjectorBootstrapper
         services.AddMediatR(c =>
         {
             c.RegisterServicesFromAssemblyContaining(typeof(CommandHandler<,>));
-            c.AddOpenBehavior(typeof(ValidatorBehavior<,>));
             c.Lifetime = ServiceLifetime.Scoped;
         });
     }

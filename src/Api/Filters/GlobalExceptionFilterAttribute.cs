@@ -1,7 +1,7 @@
-using System;
 using Api.Factories;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Api.Filters;
 

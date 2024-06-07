@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using FluentValidation.Results;
+using System.Collections.Generic;
 
 namespace Application.Common;
 
