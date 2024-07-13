@@ -124,6 +124,7 @@ public class CustomProblemDetailsFactory(IHttpContextAccessor httpContextAccesso
             Detail = stringLocalizer[ProblemDetailsErrorMessages.UnhandledExceptionDetail],
             Status = statusCode,
             Instance = _httpContext.Request.Path.ToString(),
+            Type = "https://datatracker.ietf.org/doc/html/rfc9110#name-500-internal-server-error",
             Extensions =
             {
                 { "success", false },

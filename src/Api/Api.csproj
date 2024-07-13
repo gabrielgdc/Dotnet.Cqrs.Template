@@ -17,20 +17,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Factories\ProblemDetailsErrorMessages.resx">
+    <EmbeddedResource Update="Resources\ProblemDetailsErrorMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ProblemDetailsErrorMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Factories\ProblemDetailsErrorMessages.en-us.resx">
-      <DependentUpon>ProblemDetailsErrorMessages.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Factories\ProblemDetailsErrorMessages.pt-br.resx">
-      <DependentUpon>ProblemDetailsErrorMessages.resx</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Factories\ProblemDetailsErrorMessages.Designer.cs">
+    <Compile Update="Resources\ProblemDetailsErrorMessages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ProblemDetailsErrorMessages.resx</DependentUpon>
