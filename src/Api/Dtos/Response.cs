@@ -4,16 +4,6 @@ namespace Api.Dtos;
 /// Represents a record encapsulating a response with data and a success indicator.
 /// </summary>
 /// <typeparam name="T">The type of data contained within the response.</typeparam>
-public record Response<T>(T data)
-{
-    /// <summary>
-    /// A boolean flag indicating the success or failure of the operation that generated the response. 
-    /// Defaults to true.
-    /// </summary>
-    public bool Success { get; } = true;
-
-    /// <summary>
-    /// The actual data associated with the response.
-    /// </summary>
-    public T Data { get; } = data;
-}
+/// <param name="Success"> A boolean flag indicating the success or failure of the operation that generated the response. Defaults to true.</param>
+/// <param name="Data"> The actual data associated with the response. </param>
+public record Response<T>(T Data, bool Success = true);

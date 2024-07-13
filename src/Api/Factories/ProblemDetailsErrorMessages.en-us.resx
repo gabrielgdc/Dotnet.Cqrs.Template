@@ -23,4 +23,10 @@
     <data name="UnhandledException" xml:space="preserve">
         <value>Something went wrong. We're working on it.</value>
     </data>
+    <data name="ResourceNotFound" xml:space="preserve">
+        <value>Resource Not Found.</value>
+    </data>
+    <data name="ResourceNotFoundDetail" xml:space="preserve">
+        <value>The resource you're trying to access could not be found, try again later.</value>
+    </data>
 </root>

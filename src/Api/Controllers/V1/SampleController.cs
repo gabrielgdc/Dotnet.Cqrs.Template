@@ -23,17 +23,19 @@ public class SampleController(IMediator bus, ICustomProblemDetailsFactory custom
     /// <summary>
     /// Handles a GET request to execute a sample query.
     /// </summary>
+    /// <param name="searchTerm">An optional search term to search for a sample.</param>
     /// <param name="forceClientException">An optional boolean query parameter indicating whether to force a client-side exception.</param>
     /// <returns>A Response&lt;SampleQueryResponse&gt; object containing the successful query results or a ProblemDetails object with detailed error information.</returns>
     [HttpGet]
     [ProducesResponseType(typeof(Response<SampleQueryResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> GetAsync([FromQuery] bool forceClientException)
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetAsync([FromQuery] string searchTerm, [FromQuery] bool forceClientException)
     {
-        var result = await Bus.Send(new SampleQuery(forceClientException));
-
+        var result = await Bus.Send(new SampleQuery(forceClientException, searchTerm));
         return result.Match(
             success => Ok(new Response<SampleQueryResponse>(success)),
+            notFound => CustomProblemDetailsFactory.CreateProblemDetailsActionResult(notFound),
             validationFailed => CustomProblemDetailsFactory.CreateProblemDetailsActionResult(validationFailed),
             error => CustomProblemDetailsFactory.CreateProblemDetailsActionResult(error)
         );

@@ -62,6 +62,24 @@ namespace Api.Factories {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string ResourceNotFound {
+            get {
+                return ResourceManager.GetString("ResourceNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ResourceNotFoundDetail {
+            get {
+                return ResourceManager.GetString("ResourceNotFoundDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string UnhandledException {
             get {
                 return ResourceManager.GetString("UnhandledException", resourceCulture);

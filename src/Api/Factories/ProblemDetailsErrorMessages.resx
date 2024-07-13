@@ -30,4 +30,10 @@
     <data name="UnhandledException" xml:space="preserve">
         <value />
     </data>
+    <data name="ResourceNotFound" xml:space="preserve">
+        <value />
+    </data>
+    <data name="ResourceNotFoundDetail" xml:space="preserve">
+        <value />
+    </data>
 </root>

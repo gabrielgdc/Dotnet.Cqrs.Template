@@ -2,7 +2,9 @@ using Application.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using OneOf.Types;
 using System.Linq;
+using Error = Application.Common.Error;
 
 namespace Api.Factories;
 
@@ -26,6 +28,12 @@ public interface ICustomProblemDetailsFactory
     IActionResult CreateProblemDetailsActionResult(ValidationFailed validationFailed);
 
     /// <summary>
+    /// Creates a problem details model from a NotFound struct.
+    /// </summary>
+    /// <param name="notFound">A not found struct</param>
+    IActionResult CreateProblemDetailsActionResult(NotFound notFound);
+
+    /// <summary>
     /// Creates a generic problem details model.
     /// </summary>
     /// <returns>IActionResult</returns>
@@ -47,7 +55,7 @@ public class CustomProblemDetailsFactory(IHttpContextAccessor httpContextAccesso
             Detail = error.Detail,
             Status = statusCode,
             Instance = _httpContext.Request.Path.ToString(),
-            Type = "about:blank",
+            Type = "https://datatracker.ietf.org/doc/html/rfc9110#name-500-internal-server-error",
             Extensions =
             {
                 { "success", false },
@@ -71,13 +79,35 @@ public class CustomProblemDetailsFactory(IHttpContextAccessor httpContextAccesso
             Detail = stringLocalizer[ProblemDetailsErrorMessages.ValidationErrorDetail],
             Status = statusCode,
             Instance = _httpContext.Request.Path.ToString(),
-            Type = "about:blank",
+            Type = "https://datatracker.ietf.org/doc/html/rfc9110#name-400-bad-request",
             Extensions =
             {
                 { "success", false },
                 { "code", nameof(ProblemDetailsErrorMessages.ValidationError) },
                 { "traceId", _httpContext.TraceIdentifier },
                 { "validationFailures", validationFailures }
+            }
+        };
+
+        return new ObjectResult(problemDetails) { StatusCode = statusCode };
+    }
+
+    public IActionResult CreateProblemDetailsActionResult(NotFound notFound)
+    {
+        const int statusCode = StatusCodes.Status404NotFound;
+
+        var problemDetails = new ProblemDetails
+        {
+            Title = stringLocalizer[ProblemDetailsErrorMessages.ResourceNotFound],
+            Detail = stringLocalizer[ProblemDetailsErrorMessages.ResourceNotFoundDetail],
+            Status = statusCode,
+            Instance = _httpContext.Request.Path.ToString(),
+            Type = "https://datatracker.ietf.org/doc/html/rfc9110#name-404-not-found",
+            Extensions =
+            {
+                { "success", false },
+                { "code", nameof(ProblemDetailsErrorMessages.ResourceNotFound) },
+                { "traceId", _httpContext.TraceIdentifier }
             }
         };
 
