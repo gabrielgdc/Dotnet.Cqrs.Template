@@ -25,7 +25,11 @@ public static class SwaggerSetup
             {
                 Title = string.Join(" ", "Cqrs.Template".Split(".")),
                 Description = "Some description",
-                Contact = new OpenApiContact { Name = "Genial Investimentos", Url = new Uri("https://www.genialinvestimentos.com.br/") }
+                Contact = new OpenApiContact
+                {
+                    Name = "Genial Investimentos",
+                    Url = new Uri("https://www.genialinvestimentos.com.br/")
+                }
             });
 
             s.EnableAnnotations();

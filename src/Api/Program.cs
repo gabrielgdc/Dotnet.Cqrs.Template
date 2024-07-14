@@ -9,6 +9,7 @@ using Infra.CrossCutting.IoC.Configurations.HealthCheck;
 using Infra.CrossCutting.IoC.Configurations.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,6 @@ builder.Services.AddValidatorsFromAssemblyContaining(typeof(Validator<>), Servic
 builder.Services.AddLoggerAction(builder.Configuration);
 builder.Services.AddEndpointVersioning();
 builder.Services.AddLocalization();
-builder.Services.AddControllers();
 builder.Services.AddSwaggerSetup();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<GlobalExceptionFilterAttribute>();
@@ -25,6 +25,8 @@ builder.Services.AddScoped<ICustomProblemDetailsFactory, CustomProblemDetailsFac
 builder.Services.AddDependencyInjectionSetup(builder.Configuration);
 builder.Services.AddDatabaseSetup();
 builder.Services.AddHealthCheck();
+builder.Services.AddControllers()
+       .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 var app = builder.Build();
 
