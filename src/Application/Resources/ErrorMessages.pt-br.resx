@@ -29,4 +29,16 @@
     <data name="ResourceNotFoundDetail" xml:space="preserve">
         <value>O recurso que você está tentando acessar não existe, tente novamente mais tarde.</value>
     </data>
+    <data name="ExceptionForced" xml:space="preserve">
+    <value>Uma exceção foi forçada.</value>
+  </data>
+    <data name="UnexpectedError" xml:space="preserve">
+    <value>Ocorreu um erro ao buscar o exemplo.</value>
+  </data>
+    <data name="ExceptionForcedDetail" xml:space="preserve">
+        <value>Um exceção foi forçada para motivos de testes do sistemas de tratamento de exceções.</value>
+    </data>
+    <data name="UnexpectedErrorDetail" xml:space="preserve">
+        <value>Por favor, tente novamente em alguns instantes. Estamos com alguma instabilidade no sistema.</value>
+    </data>
 </root>

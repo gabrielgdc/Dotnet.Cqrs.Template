@@ -21,23 +21,17 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Update="Queries\SampleQuery\SampleQueryErrorMessages.resx">
+      <EmbeddedResource Update="Resources\ErrorMessages.resx">
         <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>SampleQueryErrorMessages.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Queries\SampleQuery\SampleQueryErrorMessages.en-us.resx">
-        <DependentUpon>SampleQueryErrorMessages.resx</DependentUpon>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Queries\SampleQuery\SampleQueryErrorMessages.pt-br.resx">
-        <DependentUpon>SampleQueryErrorMessages.resx</DependentUpon>
+        <LastGenOutput>ProblemDetailsErrorMessages.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Queries\SampleQuery\SampleQueryErrorMessages.Designer.cs">
+      <Compile Update="Resources\ErrorMessages.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
-        <DependentUpon>SampleQueryErrorMessages.resx</DependentUpon>
+        <DependentUpon>ErrorMessages.resx</DependentUpon>
       </Compile>
     </ItemGroup>
 </Project>

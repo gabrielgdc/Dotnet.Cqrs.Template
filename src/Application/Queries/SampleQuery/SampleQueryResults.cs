@@ -13,4 +13,4 @@ namespace Application.Queries.SampleQuery;
 /// - Error: Represents unexpected errors that occurred while processing the query.
 /// </summary>
 [GenerateOneOf]
-public partial class SampleQueryResult : OneOfBase<SampleQueryResponse, NotFound, ValidationFailed, Error>;
+public partial class SampleQueryResults : OneOfBase<SampleQueryResponse, NotFound, ValidationFailed, Error>;

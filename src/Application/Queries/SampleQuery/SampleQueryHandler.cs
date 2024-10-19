@@ -1,3 +1,4 @@
+using Api.Factories;
 using Application.Common;
 using Application.Queries.SampleQuery.Dtos;
 using Infra.CrossCutting.Environments.Configurations;
@@ -19,7 +20,7 @@ public class SampleQueryHandler(
     IStringLocalizer<SampleQueryHandler> stringLocalizer,
     DatabaseConfiguration databaseConfiguration,
     ILogger logger)
-    : QueryHandler<SampleQuery, SampleQueryResult>(databaseConfiguration, logger, stringLocalizer)
+    : QueryHandler<SampleQuery, SampleQueryResults>(databaseConfiguration, logger, stringLocalizer)
 {
     /// <summary>
     /// A collection of sample strings for demonstration purposes.
@@ -32,7 +33,7 @@ public class SampleQueryHandler(
     /// <param name="request">The SampleQuery object containing query parameters.</param>
     /// <param name="cancellationToken">A cancellation token to signal cancellation of the operation.</param>
     /// <returns>A Task representing the asynchronous operation that produces a SampleQueryResult object containing either sample data or error information.</returns>
-    public override async Task<SampleQueryResult> Handle(SampleQuery request, CancellationToken cancellationToken)
+    public override async Task<SampleQueryResults> Handle(SampleQuery request, CancellationToken cancellationToken)
     {
         try
         {
@@ -43,9 +44,9 @@ public class SampleQueryHandler(
             if (request.ForceClientException)
             {
                 return new Error(
-                    nameof(SampleQueryErrorMessages.ExceptionForced),
-                    StringLocalizer[SampleQueryErrorMessages.ExceptionForced],
-                    StringLocalizer[SampleQueryErrorMessages.ExceptionForcedDetail]
+                    nameof(ErrorMessages.ExceptionForced),
+                    StringLocalizer[ErrorMessages.ExceptionForced],
+                    StringLocalizer[ErrorMessages.ExceptionForcedDetail]
                 );
             }
 
@@ -62,9 +63,9 @@ public class SampleQueryHandler(
             Logger.LogCritical("There's an error on processing your request #### {Exception} ####", exception);
 
             return new Error(
-                nameof(SampleQueryErrorMessages.UnexpectedError),
-                StringLocalizer[SampleQueryErrorMessages.UnexpectedError],
-                StringLocalizer[SampleQueryErrorMessages.UnexpectedErrorDetail]
+                nameof(ErrorMessages.UnexpectedError),
+                StringLocalizer[ErrorMessages.UnexpectedError],
+                StringLocalizer[ErrorMessages.UnexpectedErrorDetail]
             );
         }
     }

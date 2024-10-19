@@ -75,15 +75,15 @@ public class CustomProblemDetailsFactory(IHttpContextAccessor httpContextAccesso
 
         var problemDetails = new ProblemDetails
         {
-            Title = stringLocalizer[ProblemDetailsErrorMessages.ValidationError],
-            Detail = stringLocalizer[ProblemDetailsErrorMessages.ValidationErrorDetail],
+            Title = stringLocalizer[ErrorMessages.ValidationError],
+            Detail = stringLocalizer[ErrorMessages.ValidationErrorDetail],
             Status = statusCode,
             Instance = _httpContext.Request.Path.ToString(),
             Type = "https://datatracker.ietf.org/doc/html/rfc9110#name-400-bad-request",
             Extensions =
             {
                 { "success", false },
-                { "code", nameof(ProblemDetailsErrorMessages.ValidationError) },
+                { "code", nameof(ErrorMessages.ValidationError) },
                 { "traceId", _httpContext.TraceIdentifier },
                 { "validationFailures", validationFailures }
             }
@@ -98,15 +98,15 @@ public class CustomProblemDetailsFactory(IHttpContextAccessor httpContextAccesso
 
         var problemDetails = new ProblemDetails
         {
-            Title = stringLocalizer[ProblemDetailsErrorMessages.ResourceNotFound],
-            Detail = stringLocalizer[ProblemDetailsErrorMessages.ResourceNotFoundDetail],
+            Title = stringLocalizer[ErrorMessages.ResourceNotFound],
+            Detail = stringLocalizer[ErrorMessages.ResourceNotFoundDetail],
             Status = statusCode,
             Instance = _httpContext.Request.Path.ToString(),
             Type = "https://datatracker.ietf.org/doc/html/rfc9110#name-404-not-found",
             Extensions =
             {
                 { "success", false },
-                { "code", nameof(ProblemDetailsErrorMessages.ResourceNotFound) },
+                { "code", nameof(ErrorMessages.ResourceNotFound) },
                 { "traceId", _httpContext.TraceIdentifier }
             }
         };
@@ -120,15 +120,15 @@ public class CustomProblemDetailsFactory(IHttpContextAccessor httpContextAccesso
 
         var problemDetails = new ProblemDetails
         {
-            Title = stringLocalizer[ProblemDetailsErrorMessages.UnhandledException],
-            Detail = stringLocalizer[ProblemDetailsErrorMessages.UnhandledExceptionDetail],
+            Title = stringLocalizer[ErrorMessages.UnhandledException],
+            Detail = stringLocalizer[ErrorMessages.UnhandledExceptionDetail],
             Status = statusCode,
             Instance = _httpContext.Request.Path.ToString(),
             Type = "https://datatracker.ietf.org/doc/html/rfc9110#name-500-internal-server-error",
             Extensions =
             {
                 { "success", false },
-                { "code", nameof(ProblemDetailsErrorMessages.UnhandledException)},
+                { "code", nameof(ErrorMessages.UnhandledException)},
                 { "traceId", _httpContext.TraceIdentifier }
             }
         };

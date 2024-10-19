@@ -1,70 +1,20 @@
 {
+  "$schema": "http://json.schemastore.org/template",
   "author": "Genial Investimentos",
+  "name": "Cqrs Ddd Template",
+  "identity": "Cqrs.Ddd.Template",
+  "shortName": "cqrsdddtemplate",
+  "description": ".NET Core 8 Web Api using CQRS Template",
   "classifications": [
-    "Web api",
+    "Web Api",
     "CQRS",
-    "ClassLibs"
+    "Class Libraries",
+    "EntityFramework",
+    "Dapper",
+    "Domain Driven Design"
   ],
-  "description": ".Net Core Web API project using CQRS template",
-  "name": "cqrs template",
-  "defaultName": "Cqrs.Template.Project",
-  "identity": "Cqrs.Template.CSharp",
-  "groupIdentity": "Template.Tools",
   "tags": {
     "language": "C#",
-    "type": "project"
-  },
-  "exclude": [
-    "*.idea"
-  ],
-  "shortName": "cqrs.ddd.template",
-  "sourceName": "Cqrs.Template",
-  "guids": [
-    "1c9f0454-0566-4070-9737-c6719aeb573c",
-    "42c93dea-20f2-499a-8bae-9d924378554a",
-    "47e17a71-f66f-436e-bfbe-e2894109df88",
-    "34e84bd7-7250-452d-bc76-fb263018e145",
-    "c69ecdbb-b502-4655-b200-55a7be5af659",
-    "e678efbe-08b9-43f4-8b27-8693628eeb3e"
-  ],
-  "primaryOutputs": [
-    {
-      "path": "..\\src\\Cqrs.Template.Api\\Cqrs.Template.Api.csproj"
-    },
-    {
-      "path": "..\\src\\Cqrs.Template.Application\\cqrs.template.Application.csproj"
-    },
-    {
-      "path": "..\\src\\Cqrs.Template.Domain\\Cqrs.Template.Domain.csproj"
-    },
-    {
-      "path": "..\\src\\Cqrs.Template.Infra.Data\\Cqrs.Template.Infra.Data.csproj"
-    },
-    {
-      "path": "..\\src\\Cqrs.Template.Infra.CrossCutting.IoC\\Cqrs.Template.Infra.CrossCutting.IoC.csproj"
-    },
-    {
-      "path": "..\\src\\Cqrs.Template.Infra.CrossCutting.Environments\\Cqrs.Template.Infra.CrossCutting.Environments.csproj"
-    }
-  ],
-  "symbols": {
-    "foo-rename": {
-      "type": "parameter",
-      "datatype": "string",
-      "replaces": "Cqrs.Template",
-      "description": "Renames component"
-    }
-  },
-  "sources": [
-    {
-      "modifiers": [
-        {
-          "exclude": [
-            ".git/**",
-            "README.MD"
-          ]
-        }
-      ]
-    }
-  ]
+    "type": "solution"
+  }
 }
