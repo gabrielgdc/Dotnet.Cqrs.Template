@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Application.Common;
+namespace Application.Shared.ResultTypes;
 
 /// <summary>
 /// Represents a base class for defining validators using the FluentValidation library.

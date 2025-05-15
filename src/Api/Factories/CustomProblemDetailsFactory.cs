@@ -1,10 +1,11 @@
-using Application.Common;
+using Application.Shared.Resources;
+using Application.Shared.ResultTypes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using OneOf.Types;
 using System.Linq;
-using Error = Application.Common.Error;
+using Error = Application.Shared.ResultTypes.Error;
 
 namespace Api.Factories;
 

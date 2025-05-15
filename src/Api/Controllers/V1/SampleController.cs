@@ -1,7 +1,6 @@
-using Api.Dtos;
 using Api.Factories;
-using Application.Queries.SampleQuery;
-using Application.Queries.SampleQuery.Dtos;
+using Application.Features.SampleQuery;
+using Application.Features.SampleQuery.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -27,14 +26,14 @@ public class SampleController(IMediator bus, ICustomProblemDetailsFactory custom
     /// <param name="forceClientException">An optional boolean query parameter indicating whether to force a client-side exception.</param>
     /// <returns>A Response&lt;SampleQueryResponse&gt; object containing the successful query results or a ProblemDetails object with detailed error information.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(Response<SampleQueryResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(SampleQueryResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetAsync([FromQuery] string searchTerm, [FromQuery] bool forceClientException)
     {
         var result = await Bus.Send(new SampleQuery(forceClientException, searchTerm));
         return result.Match(
-            success => Ok(new Response<SampleQueryResponse>(success)),
+            Ok,
             notFound => CustomProblemDetailsFactory.CreateProblemDetailsActionResult(notFound),
             validationFailed => CustomProblemDetailsFactory.CreateProblemDetailsActionResult(validationFailed),
             error => CustomProblemDetailsFactory.CreateProblemDetailsActionResult(error)

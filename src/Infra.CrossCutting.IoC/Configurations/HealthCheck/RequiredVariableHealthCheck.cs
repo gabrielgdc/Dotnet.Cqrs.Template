@@ -3,7 +3,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Infra.CrossCutting.IoC.Configurations.HealthCheck;
+namespace Infra.CrossCutting.Ioc.Configurations.HealthCheck;
 
 internal class RequiredVariablesHealthCheck : IHealthCheck
 {

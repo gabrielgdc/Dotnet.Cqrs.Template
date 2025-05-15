@@ -2,7 +2,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Infra.CrossCutting.IoC.Configurations;
+namespace Infra.CrossCutting.Ioc.Configurations;
 
 public static class DependencyInjectionSetup
 {

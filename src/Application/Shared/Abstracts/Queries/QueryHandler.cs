@@ -8,7 +8,7 @@ using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Queries;
+namespace Application.Shared.Abstracts.Queries;
 
 /// <summary>
 /// Represents a base class for defining query handlers within the MediatR library, providing access to common dependencies and database interaction.

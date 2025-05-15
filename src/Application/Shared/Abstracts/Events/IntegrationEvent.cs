@@ -1,7 +1,7 @@
 using MediatR;
 using System;
 
-namespace Application.Events;
+namespace Application.Shared.Abstracts.Events;
 
 /// <summary>
 /// Represents a base class for integration events within the MediatR framework.

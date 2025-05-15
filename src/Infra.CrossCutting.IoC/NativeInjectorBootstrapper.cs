@@ -1,9 +1,9 @@
-using Application.Commands;
+using Application.Shared.Abstracts.Commands;
 using Infra.CrossCutting.Environments.Configurations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infra.CrossCutting.IoC;
+namespace Infra.CrossCutting.Ioc;
 
 /// <summary>
 /// A static class responsible for registering services within the application's dependency injection container.

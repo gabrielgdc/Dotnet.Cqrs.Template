@@ -6,7 +6,7 @@ using OneOf;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Commands;
+namespace Application.Shared.Abstracts.Commands;
 
 /// <summary>
 /// Represents a base class for command handlers within the MediatR library, integrating with logging, localization, 

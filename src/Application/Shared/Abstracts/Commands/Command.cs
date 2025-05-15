@@ -2,7 +2,7 @@ using FluentValidation.Results;
 using MediatR;
 using OneOf;
 
-namespace Application.Commands;
+namespace Application.Shared.Abstracts.Commands;
 
 /// <summary>
 /// Represents a base class for defining commands within the MediatR library.

@@ -1,4 +1,4 @@
-namespace Application.Common;
+namespace Application.Shared.ResultTypes;
 
 /// <summary>
 /// Represents an error with a code, title, and detailed description.

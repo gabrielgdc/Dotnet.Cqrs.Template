@@ -4,7 +4,7 @@ using Infra.Data.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Infra.CrossCutting.IoC.Configurations;
+namespace Infra.CrossCutting.Ioc.Configurations;
 
 public static class DatabaseSetup
 {

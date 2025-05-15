@@ -1,4 +1,6 @@
-namespace Application.Queries.SampleQuery;
+using Application.Shared.Abstracts.Queries;
+
+namespace Application.Features.SampleQuery;
 
 /// <summary>
 /// Represents a sample query object used to retrieve data or perform an operation within the application.

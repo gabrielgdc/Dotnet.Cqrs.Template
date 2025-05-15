@@ -2,7 +2,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Events;
+namespace Application.Shared.Abstracts.Events;
 
 /// <summary>
 /// Represents a base class for event handlers within the MediatR framework.

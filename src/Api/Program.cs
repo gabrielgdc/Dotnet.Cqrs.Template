@@ -1,11 +1,10 @@
 using Api.Factories;
 using Api.Filters;
-using Application.Common;
+using Application.Shared.ResultTypes;
 using FluentValidation;
 using Infra.CrossCutting.Ioc.Configurations;
-using Infra.CrossCutting.IoC.Configurations;
-using Infra.CrossCutting.IoC.Configurations.HealthCheck;
-using Infra.CrossCutting.IoC.Configurations.Swagger;
+using Infra.CrossCutting.Ioc.Configurations.HealthCheck;
+using Infra.CrossCutting.Ioc.Configurations.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;

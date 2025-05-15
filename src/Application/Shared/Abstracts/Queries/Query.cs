@@ -2,7 +2,7 @@ using FluentValidation.Results;
 using MediatR;
 using OneOf;
 
-namespace Application.Queries;
+namespace Application.Shared.Abstracts.Queries;
 
 /// <summary>
 /// Represents a base class for defining queries within the MediatR library, incorporating validation support.

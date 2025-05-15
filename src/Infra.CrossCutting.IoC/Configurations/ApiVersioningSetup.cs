@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Infra.CrossCutting.IoC.Configurations;
+namespace Infra.CrossCutting.Ioc.Configurations;
 
 /// <summary>
 /// Contains extension methods for configuring API versioning within an ASP.NET Core application.

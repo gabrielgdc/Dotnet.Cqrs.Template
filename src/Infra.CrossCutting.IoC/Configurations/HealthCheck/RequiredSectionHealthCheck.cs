@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Infra.CrossCutting.IoC.Configurations.HealthCheck;
+namespace Infra.CrossCutting.Ioc.Configurations.HealthCheck;
 
 internal class RequiredSectionsHealthCheck<T>(IConfiguration configuration) : IHealthCheck
 {

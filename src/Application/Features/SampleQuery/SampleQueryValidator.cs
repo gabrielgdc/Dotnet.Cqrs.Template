@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Application.Queries.SampleQuery;
+namespace Application.Features.SampleQuery;
 
 /// <summary>
 /// Represents a validator class for the SampleQuery, utilizing FluentValidation for defining validation rules.

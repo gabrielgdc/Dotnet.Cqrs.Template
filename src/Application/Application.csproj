@@ -21,17 +21,14 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Update="Resources\ErrorMessages.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>ProblemDetailsErrorMessages.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
+      <Folder Include="Features\" />
+      <Folder Include="Shared\Abstracts\" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Resources\ErrorMessages.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>ErrorMessages.resx</DependentUpon>
-      </Compile>
+      <EmbeddedResource Update="Shared\Resources\ErrorMessages.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>ProblemDetailsErrorMessages.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
     </ItemGroup>
 </Project>

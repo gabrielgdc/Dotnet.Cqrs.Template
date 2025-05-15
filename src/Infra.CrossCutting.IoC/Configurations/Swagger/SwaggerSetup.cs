@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
 
-namespace Infra.CrossCutting.IoC.Configurations.Swagger;
+namespace Infra.CrossCutting.Ioc.Configurations.Swagger;
 
 public static class SwaggerSetup
 {

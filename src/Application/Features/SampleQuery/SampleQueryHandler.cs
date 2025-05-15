@@ -1,6 +1,7 @@
-using Api.Factories;
-using Application.Common;
-using Application.Queries.SampleQuery.Dtos;
+using Application.Features.SampleQuery.Models;
+using Application.Shared.Abstracts.Queries;
+using Application.Shared.Resources;
+using Application.Shared.ResultTypes;
 using Infra.CrossCutting.Environments.Configurations;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
@@ -9,9 +10,9 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Error = Application.Common.Error;
+using Error = Application.Shared.ResultTypes.Error;
 
-namespace Application.Queries.SampleQuery;
+namespace Application.Features.SampleQuery;
 
 /// <summary>
 /// Represents a query handler responsible for executing the SampleQuery and returning either sample data or appropriate error responses.
@@ -54,7 +55,7 @@ public class SampleQueryHandler(
 
             var itemFound = Samples.Where(s => s.Contains(request.SearchTerm, StringComparison.InvariantCulture)).ToList();
 
-            if (!itemFound.Any()) return new NotFound();
+            if (itemFound.Count == 0) return new NotFound();
 
             return new SampleQueryResponse(itemFound);
         }

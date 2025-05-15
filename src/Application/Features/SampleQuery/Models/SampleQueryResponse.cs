@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Application.Queries.SampleQuery.Dtos;
+namespace Application.Features.SampleQuery.Models;
 
 /// <summary>
 /// Represents a record encapsulating the response data for a sample query.

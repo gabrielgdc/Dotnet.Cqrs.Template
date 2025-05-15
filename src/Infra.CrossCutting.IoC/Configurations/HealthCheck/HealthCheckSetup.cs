@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System;
 
-namespace Infra.CrossCutting.IoC.Configurations.HealthCheck;
+namespace Infra.CrossCutting.Ioc.Configurations.HealthCheck;
 
 public static class HealthCheckSetup
 {

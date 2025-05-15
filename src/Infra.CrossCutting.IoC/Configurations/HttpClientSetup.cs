@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Refit;
 using System;
 
-namespace Infra.CrossCutting.IoC.Configurations;
+namespace Infra.CrossCutting.Ioc.Configurations;
 
 public static class HttpClientSetup
 {
