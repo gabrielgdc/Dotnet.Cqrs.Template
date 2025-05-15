@@ -2,7 +2,6 @@ using Api.Factories;
 using Api.Filters;
 using Application.Common;
 using FluentValidation;
-using Genial.Arquitetura.LoggerActionAPI.Extensions;
 using Infra.CrossCutting.Ioc.Configurations;
 using Infra.CrossCutting.IoC.Configurations;
 using Infra.CrossCutting.IoC.Configurations.HealthCheck;
@@ -15,7 +14,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCustomLocalization();
 builder.Services.AddValidatorsFromAssemblyContaining(typeof(Validator<>), ServiceLifetime.Singleton);
-builder.Services.AddLoggerAction(builder.Configuration);
 builder.Services.AddEndpointVersioning();
 builder.Services.AddLocalization();
 builder.Services.AddSwaggerSetup();
@@ -40,7 +38,6 @@ app.UseCors(corsBuilder =>
 
 app.UseRouting();
 app.UseCustomLocalization();
-app.UseLoggerAction(builder.Configuration);
 
 app.MapSwagger();
 app.MapControllers();

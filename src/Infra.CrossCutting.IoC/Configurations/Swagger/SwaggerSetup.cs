@@ -24,12 +24,7 @@ public static class SwaggerSetup
             s.SwaggerDoc("v1", new OpenApiInfo
             {
                 Title = string.Join(" ", "Cqrs.Template".Split(".")),
-                Description = "Some description",
-                Contact = new OpenApiContact
-                {
-                    Name = "Genial Investimentos",
-                    Url = new Uri("https://www.genialinvestimentos.com.br/")
-                }
+                Description = "Some description"
             });
 
             s.EnableAnnotations();
