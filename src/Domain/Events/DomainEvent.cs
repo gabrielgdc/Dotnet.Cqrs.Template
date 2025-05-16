@@ -15,15 +15,10 @@ namespace Domain.Events;
 /// They are typically published after domain entity changes (e.g., order placed, product updated) and can be used by
 /// other parts of the application (UI, background processes) to react accordingly, implementing the "when" aspect.
 /// </remarks>
-public class DomainEvent : INotification
+public record DomainEvent : INotification
 {
     /// <summary>
     /// The UTC timestamp of the domain event creation.
     /// </summary>
-    public DateTime Timestamp { get; }
-
-    protected DomainEvent()
-    {
-        Timestamp = DateTime.UtcNow;
-    }
+    public DateTime Timestamp { get; } = DateTime.UtcNow;
 }

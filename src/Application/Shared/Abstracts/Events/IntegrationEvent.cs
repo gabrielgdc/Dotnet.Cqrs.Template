@@ -13,10 +13,10 @@ namespace Application.Shared.Abstracts.Events;
 /// 
 /// Subclasses should inherit from this class and add specific properties and behavior relevant to their integration events.
 /// </remarks>
-public abstract class IntegrationEvent : INotification
+public abstract record IntegrationEvent : INotification
 {
     /// <summary>
     /// The UTC timestamp representing the time when the integration event occurred.
     /// </summary>
-    public DateTime TimeStamp { get; } = DateTime.UtcNow;
+    public DateTime Timestamp { get; } = DateTime.UtcNow;
 }

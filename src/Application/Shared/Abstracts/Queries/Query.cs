@@ -18,7 +18,7 @@ namespace Application.Shared.Abstracts.Queries;
 /// - Specific logic for retrieving or manipulating data within the `Execute` method (not defined in this base class).
 /// - Validation rules using FluentValidation or other validation libraries within the `IsValid` method.
 /// </remarks>
-public abstract class Query<TResponse> : IRequest<TResponse> where TResponse : IOneOf
+public abstract record Query<TResponse> : IRequest<TResponse> where TResponse : IOneOf
 {
     /// <summary>
     /// Stores the validation results associated with the query execution.

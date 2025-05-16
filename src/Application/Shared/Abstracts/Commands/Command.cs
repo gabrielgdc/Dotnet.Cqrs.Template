@@ -17,7 +17,7 @@ namespace Application.Shared.Abstracts.Commands;
 /// Subclasses should inherit from this class and implement the `IsValid` method to define command validation logic.
 /// They can also define specific properties and behavior relevant to their command functionality.
 /// </remarks>
-public abstract class Command<TResponse> : IRequest<TResponse> where TResponse : IOneOf
+public abstract record Command<TResponse> : IRequest<TResponse> where TResponse : IOneOf
 {
     /// <summary>
     /// The validation result object containing any validation errors encountered during command execution.
