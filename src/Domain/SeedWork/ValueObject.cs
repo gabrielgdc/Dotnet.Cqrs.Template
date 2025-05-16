@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace Domain.SeedWork;
 
@@ -13,70 +11,46 @@ namespace Domain.SeedWork;
 /// is determined solely by its internal state, and it should not have an object identity. Value objects are often used
 /// as properties of aggregate root entities.
 /// </remarks>
-public abstract class ValueObject : IEquatable<ValueObject>
+public abstract class ValueObject
 {
-    public static bool operator ==(ValueObject obj1, ValueObject obj2)
+    protected static bool EqualOperator(ValueObject left, ValueObject right)
     {
-        return obj1?.Equals(obj2) ?? Equals(obj2, null);
+        if (ReferenceEquals(left, null) ^ ReferenceEquals(right, null))
+        {
+            return false;
+        }
+
+        return ReferenceEquals(left, null) || left.Equals(right);
     }
 
-    public static bool operator !=(ValueObject obj1, ValueObject obj2)
+    protected static bool NotEqualOperator(ValueObject left, ValueObject right)
     {
-        return !(obj1 == obj2);
+        return !(EqualOperator(left, right));
     }
+
+    protected abstract IEnumerable<object> GetEqualityComponents();
 
     public override bool Equals(object obj)
     {
-        return Equals((ValueObject)obj);
-    }
+        if (obj == null || obj.GetType() != GetType())
+        {
+            return false;
+        }
 
-    public bool Equals(ValueObject obj)
-    {
-        if (obj == null || GetType() != obj.GetType()) return false;
+        var other = (ValueObject)obj;
 
-        return GetProperties().All(p => PropertiesAreEqual(obj, p))
-               && GetFields().All(f => FieldsAreEqual(obj, f));
-    }
-
-    private bool PropertiesAreEqual(object obj, PropertyInfo p)
-    {
-        return Equals(p.GetValue(this, null), p.GetValue(obj, null));
-    }
-
-    private bool FieldsAreEqual(object obj, FieldInfo f)
-    {
-        return Equals(f.GetValue(this), f.GetValue(obj));
-    }
-
-    private IEnumerable<PropertyInfo> GetProperties()
-    {
-        return GetType()
-            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-            .ToList();
-    }
-
-    private IEnumerable<FieldInfo> GetFields()
-    {
-        return GetType()
-            .GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-            .ToList();
+        return this.GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
     }
 
     public override int GetHashCode()
     {
-        var hash = GetProperties()
-            .Select(prop => prop.GetValue(this, null))
-            .Aggregate(17, HashValue);
-
-        return GetFields()
-            .Select(field => field.GetValue(this))
-            .Aggregate(hash, HashValue);
+        return GetEqualityComponents()
+            .Select(x => x != null ? x.GetHashCode() : 0)
+            .Aggregate((x, y) => x ^ y);
     }
 
-    private static int HashValue(int seed, object value)
+    public ValueObject GetCopy()
     {
-        var currentHash = value?.GetHashCode() ?? 0;
-
-        return seed * 23 + currentHash;
+        return this.MemberwiseClone() as ValueObject;
     }
 }
