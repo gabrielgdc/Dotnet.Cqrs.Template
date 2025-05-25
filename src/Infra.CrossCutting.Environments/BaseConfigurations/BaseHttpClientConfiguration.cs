@@ -7,7 +7,7 @@ namespace Infra.CrossCutting.Environments.BaseConfigurations;
 /// This abstract class provides a foundation for defining configuration options for HTTP client proxies within your application.
 /// Subclasses can inherit from this class and extend it with specific properties relevant to their proxy implementation.
 /// </remarks>
-public abstract class BaseHttpClientProxyConfiguration
+public abstract record BaseHttpClientConfiguration
 {
     /// <summary>
     /// The base URL used by the HTTP client proxy for making requests.

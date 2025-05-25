@@ -3,7 +3,7 @@ namespace Infra.CrossCutting.Environments.Configurations;
 /// <summary>
 /// Represents the database configuration settings loaded from the application settings (environment variables).
 /// </summary>
-public class DatabaseConfiguration
+public record DatabaseConfiguration
 {
     /// <summary>
     /// The connection string to be used for connecting to the database.

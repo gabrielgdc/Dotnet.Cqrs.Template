@@ -2,7 +2,6 @@ using Application.Features.SampleQuery.Models;
 using Application.Shared.Abstracts.Queries;
 using Application.Shared.Resources;
 using Application.Shared.ResultTypes;
-using Infra.CrossCutting.Environments.Configurations;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using OneOf.Types;
@@ -19,9 +18,8 @@ namespace Application.Features.SampleQuery;
 /// </summary>
 public class SampleQueryHandler(
     IStringLocalizer<SampleQueryHandler> stringLocalizer,
-    DatabaseConfiguration databaseConfiguration,
     ILogger logger)
-    : QueryHandler<SampleQuery, SampleQueryResults>(databaseConfiguration, logger, stringLocalizer)
+    : QueryHandler<SampleQuery, SampleQueryResults>(logger, stringLocalizer)
 {
     /// <summary>
     /// A collection of sample strings for demonstration purposes.

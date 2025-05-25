@@ -19,7 +19,7 @@ public static class HttpClientSetup
     /// <exception cref="ArgumentNullException">Thrown if either `services` or `configuration` is null.</exception>
     /// <exception cref="ArgumentNullException">Thrown if the configuration section corresponding to `TConfiguration` is not found.</exception>
     public static void AddHttpClientProxy<TInterface, TConfiguration>(this IServiceCollection services, IConfiguration configuration)
-        where TConfiguration : BaseHttpClientProxyConfiguration
+        where TConfiguration : BaseHttpClientConfiguration
         where TInterface : class
     {
         ArgumentNullException.ThrowIfNull(services);

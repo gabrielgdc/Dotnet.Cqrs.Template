@@ -4,39 +4,42 @@ using Application.Shared.ResultTypes;
 using FluentValidation;
 using Infra.CrossCutting.Ioc.Configurations;
 using Infra.CrossCutting.Ioc.Configurations.HealthCheck;
+using Infra.CrossCutting.Ioc.Configurations.Logging;
 using Infra.CrossCutting.Ioc.Configurations.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using System.Text.Json.Serialization;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCustomLocalization();
-builder.Services.AddValidatorsFromAssemblyContaining(typeof(Validator<>), ServiceLifetime.Singleton);
-builder.Services.AddEndpointVersioning();
-builder.Services.AddLocalization();
+builder.Host.UseSerilog();
+
+builder.Services.AddLocalizationSetup();
 builder.Services.AddSwaggerSetup();
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<GlobalExceptionFilterAttribute>();
-builder.Services.AddScoped<ICustomProblemDetailsFactory, CustomProblemDetailsFactory>();
+builder.Services.AddLoggingSetup(builder.Configuration);
 builder.Services.AddDependencyInjectionSetup(builder.Configuration);
 builder.Services.AddDatabaseSetup();
-builder.Services.AddHealthCheck();
-builder.Services.AddControllers()
-       .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+builder.Services.AddHealthCheckSetup();
+builder.Services.AddEndpointVersioningSetup();
+
+builder.Services.AddScoped<GlobalExceptionFilterAttribute>();
+builder.Services.AddScoped<ICustomProblemDetailsFactory, CustomProblemDetailsFactory>();
+
+builder.Services.AddValidatorsFromAssemblyContaining(typeof(Validator<>), ServiceLifetime.Singleton);
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
 app.UseCors(corsBuilder =>
 {
-    corsBuilder.WithOrigins("*");
     corsBuilder.AllowAnyOrigin();
     corsBuilder.AllowAnyMethod();
     corsBuilder.AllowAnyHeader();
 });
 
 app.UseRouting();
-app.UseCustomLocalization();
+app.UseLocalization();
 
 app.MapSwagger();
 app.MapControllers();

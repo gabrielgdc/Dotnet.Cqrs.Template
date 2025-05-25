@@ -13,7 +13,7 @@ public static class ApiVersioningSetup
     /// </summary>
     /// <param name="services">The IServiceCollection instance to extend.</param>
     /// <exception cref="ArgumentNullException">Thrown if the services parameter is null.</exception>
-    public static void AddEndpointVersioning(this IServiceCollection services)
+    public static void AddEndpointVersioningSetup(this IServiceCollection services)
     {
         ArgumentNullException.ThrowIfNull(services);
 

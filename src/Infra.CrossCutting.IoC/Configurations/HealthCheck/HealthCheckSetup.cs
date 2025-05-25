@@ -17,7 +17,7 @@ public static class HealthCheckSetup
     /// <param name="services" type="Microsoft.Extensions.DependencyInjection.IServiceCollection">
     /// The service collection to add health checks to.
     /// </param>
-    public static void AddHealthCheck(this IServiceCollection services)
+    public static void AddHealthCheckSetup(this IServiceCollection services)
     {
         var serviceProvider = services.BuildServiceProvider();
         var hcBuilder = services.AddHealthChecks();
