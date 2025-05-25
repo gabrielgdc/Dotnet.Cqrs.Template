@@ -5,5 +5,8 @@ namespace Infra.CrossCutting.Environments.Configurations;
 /// </summary>
 public record LoggingConfiguration
 {
-    public bool LogsOnConsole { get; set; }
+    /// <summary>
+    /// Toggles logs on console
+    /// </summary>
+    public bool LogsOnConsole { get; init; }
 }
