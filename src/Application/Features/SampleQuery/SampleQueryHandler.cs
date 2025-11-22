@@ -18,7 +18,7 @@ namespace Application.Features.SampleQuery;
 /// </summary>
 public class SampleQueryHandler(
     IStringLocalizer<SampleQueryHandler> stringLocalizer,
-    ILogger logger)
+    ILogger<SampleQueryHandler> logger)
     : QueryHandler<SampleQuery, SampleQueryResults>(logger, stringLocalizer)
 {
     /// <summary>

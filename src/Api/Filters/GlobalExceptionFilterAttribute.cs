@@ -12,7 +12,7 @@ namespace Api.Filters;
 /// This class acts as a catch-all mechanism for exceptions that aren't handled within specific controllers or actions.
 /// It logs the exception details for later analysis and returns a standardized problem detail response to the client.
 /// </remarks>
-public class GlobalExceptionFilterAttribute(ICustomProblemDetailsFactory customProblemDetailsFactory, ILogger logger) : Attribute, IExceptionFilter
+public class GlobalExceptionFilterAttribute(ICustomProblemDetailsFactory customProblemDetailsFactory, ILogger<GlobalExceptionFilterAttribute> logger) : Attribute, IExceptionFilter
 {
     /// <summary>
     /// Logs the exception details and creates a problem details response when an unhandled exception occurs.
